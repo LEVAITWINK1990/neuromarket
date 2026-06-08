@@ -64,12 +64,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "Roboto",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
           "Segoe UI",
-          "Roboto",
           "sans-serif",
         ],
       },

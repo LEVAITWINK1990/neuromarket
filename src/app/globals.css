@@ -1,65 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* light theme — kept for backward-compat but the app defaults to dark */
     --background: 0 0% 100%;
     --foreground: 220 13% 12%;
     --card: 0 0% 100%;
     --card-foreground: 220 13% 12%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 12%;
-    --primary: 22 95% 54%;
+    --primary: 145 100% 39%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 14% 96%;
     --secondary-foreground: 220 13% 12%;
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 40%;
-    --accent: 22 95% 54%;
+    --accent: 145 100% 39%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 22 95% 54%;
-    --radius: 0.625rem;
-    --header-bg: 220 18% 9%;
+    --ring: 145 100% 39%;
+    --radius: 0.5rem;
+    --header-bg: 0 0% 7%;
     --header-fg: 0 0% 100%;
     --discount: 0 84% 56%;
     --discount-foreground: 0 0% 100%;
-    --smart: 22 95% 54%;
+    --smart: 145 100% 39%;
     --smart-foreground: 0 0% 100%;
+    --gamivo-green: 145 100% 39%;
+    --gamivo-dark: 0 0% 7%;
+    --gamivo-card: 0 0% 11%;
+    --gamivo-card-hover: 0 0% 14%;
+    --gamivo-border: 0 0% 18%;
+    --gamivo-muted: 0 0% 55%;
   }
 
   .dark {
-    /* primary palette — dark commercial marketplace with vivid orange CTA */
-    --background: 220 14% 8%;
-    --foreground: 0 0% 98%;
-    --card: 220 14% 12%;
-    --card-foreground: 0 0% 98%;
-    --popover: 220 14% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 22 95% 54%;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 145 100% 39%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 12% 17%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 220 12% 14%;
-    --muted-foreground: 220 8% 65%;
-    --accent: 22 95% 54%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 145 100% 39%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 80% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 10% 20%;
-    --input: 220 10% 20%;
-    --ring: 22 95% 54%;
-    --header-bg: 220 18% 6%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 145 100% 39%;
+    --header-bg: 0 0% 5%;
     --header-fg: 0 0% 98%;
     --discount: 0 84% 56%;
     --discount-foreground: 0 0% 100%;
-    --smart: 22 95% 54%;
+    --smart: 145 100% 39%;
     --smart-foreground: 0 0% 100%;
+    --gamivo-green: 145 100% 39%;
+    --gamivo-dark: 0 0% 5%;
+    --gamivo-card: 0 0% 11%;
+    --gamivo-card-hover: 0 0% 14%;
+    --gamivo-border: 0 0% 18%;
+    --gamivo-muted: 0 0% 55%;
   }
 }
 
@@ -69,49 +81,31 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
+    font-family: 'Roboto', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
   .price-tag {
-    @apply inline-flex items-center font-extrabold text-foreground;
+    @apply inline-flex items-center font-bold text-foreground;
   }
 
   .price-tag-accent {
-    @apply inline-flex items-center font-extrabold text-primary;
+    @apply inline-flex items-center font-bold text-primary;
   }
 
   .discount-badge {
-    @apply inline-flex items-center gap-0.5 rounded-md bg-[hsl(var(--discount))] px-1.5 py-0.5 text-[11px] font-black leading-none text-[hsl(var(--discount-foreground))];
+    @apply inline-flex items-center gap-0.5 rounded bg-[hsl(var(--discount))] px-1.5 py-0.5 text-[11px] font-bold leading-none text-[hsl(var(--discount-foreground))];
   }
 
   .smart-chip {
-    @apply inline-flex items-center gap-1 rounded-md bg-[hsl(var(--smart))] px-1.5 py-0.5 text-[11px] font-black uppercase leading-none text-[hsl(var(--smart-foreground))];
+    @apply inline-flex items-center gap-1 rounded bg-primary px-1.5 py-0.5 text-[11px] font-bold uppercase leading-none text-primary-foreground;
   }
 
-  .verified-chip {
-    @apply inline-flex items-center gap-1 rounded-md bg-primary/15 px-1.5 py-0.5 text-[11px] font-bold leading-none text-primary;
+  .gamivo-card {
+    @apply rounded-lg bg-card border border-border transition-all duration-200 hover:border-primary/40 hover:bg-[hsl(var(--gamivo-card-hover))];
   }
-
-  .platform-pill {
-    @apply inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary/5 hover:text-primary;
-  }
-
-  .section-title {
-    @apply text-2xl font-black tracking-tight md:text-[28px];
-  }
-}
-
-.hero-grid {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    hsl(var(--muted-foreground) / 0.15) 1px,
-    transparent 0
-  );
-  background-size: 24px 24px;
 }
 
 .no-scrollbar {

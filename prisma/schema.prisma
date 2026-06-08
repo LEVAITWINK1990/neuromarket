@@ -1,0 +1,639 @@
+// NeuroMarket Prisma schema
+// Marketplace for legitimate digital AI subscriptions, licenses, vouchers, services.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===== Enums =====
+
+enum UserRole {
+  BUYER
+  SELLER
+  ADMIN
+}
+
+enum SellerVerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  NOT_REQUESTED
+}
+
+enum ProductType {
+  LICENSE_KEY
+  VOUCHER_CODE
+  DIGITAL_FILE
+  MANUAL_DELIVERY
+  SERVICE
+  AFFILIATE_OFFER
+}
+
+enum DeliveryType {
+  INSTANT
+  MANUAL
+  EXTERNAL_LINK
+}
+
+enum ProductStatus {
+  DRAFT
+  PENDING_REVIEW
+  PUBLISHED
+  REJECTED
+  SUSPENDED
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  DELIVERED
+  COMPLETED
+  DISPUTED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum RefundStatus {
+  PENDING
+  SUCCEEDED
+  CANCELED
+  FAILED
+}
+
+enum RefundInitiator {
+  BUYER
+  SELLER
+  ADMIN
+  SYSTEM
+}
+
+enum DigitalInventoryStatus {
+  AVAILABLE
+  RESERVED
+  DELIVERED
+  REVOKED
+}
+
+enum DisputeStatus {
+  OPEN
+  AWAITING_SELLER
+  AWAITING_BUYER
+  UNDER_REVIEW
+  RESOLVED_REFUND_BUYER
+  RESOLVED_RELEASE_SELLER
+  RESOLVED_PARTIAL
+  REFUNDED_BUYER
+  RELEASED_TO_SELLER
+  REJECTED
+}
+
+enum ReportReason {
+  UNAUTHORIZED_RESALE
+  STOLEN_ACCOUNT
+  FAKE_PRODUCT
+  MISLEADING_DESCRIPTION
+  ILLEGAL_CONTENT
+  DUPLICATE_LISTING
+  OTHER
+}
+
+enum ReportStatus {
+  OPEN
+  UNDER_REVIEW
+  ACTION_TAKEN
+  RESOLVED
+  DISMISSED
+}
+
+enum PayoutStatus {
+  PENDING
+  REQUESTED
+  PROCESSING
+  PAID
+  FAILED
+}
+
+enum AuditAction {
+  PRODUCT_APPROVED
+  PRODUCT_REJECTED
+  PRODUCT_SUSPENDED
+  ORDER_REFUNDED
+  SELLER_VERIFIED
+  SELLER_REJECTED
+  SELLER_BANNED
+  USER_BANNED
+  USER_UNBANNED
+  DISPUTE_RESOLVED
+  DIGITAL_CODE_DELIVERED
+  PAYOUT_REQUESTED
+  PAYOUT_PROCESSED
+  COMMISSION_UPDATED
+  CATEGORY_UPDATED
+  REPORT_RESOLVED
+  REVIEW_HIDDEN
+  REFUND_REQUESTED
+  REFUND_SUCCEEDED
+  REFUND_FAILED
+}
+
+// ===== Users =====
+//
+// NextAuth v5 is configured for credentials-only with JWT sessions, so the
+// Account / Session / VerificationToken tables required by @auth/prisma-adapter
+// are intentionally absent. If a DB-backed adapter is added later, restore the
+// three models per the NextAuth docs.
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  passwordHash  String?
+  role          UserRole  @default(BUYER)
+  isBanned      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sellerProfile           SellerProfile?
+  orders                  Order[]                  @relation("BuyerOrders")
+  wishlist                WishlistItem[]
+  reviewsAuthored         Review[]                 @relation("ReviewAuthor")
+  threadsAsBuyer          MessageThread[]          @relation("BuyerThreads")
+  threadsAsSeller         MessageThread[]          @relation("SellerThreads")
+  messages                Message[]
+  disputesOpened          Dispute[]                @relation("DisputeBuyer")
+  disputesAgainst         Dispute[]                @relation("DisputeSeller")
+  disputeMessages         DisputeMessage[]
+  reportsFiled            ProductReport[]          @relation("ReportFiler")
+  auditLogs               AuditLog[]               @relation("AuditActor")
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  payoutsProcessed        Payout[]                 @relation("PayoutProcessedBy")
+}
+
+// §6.7 — email verification tokens. We store SHA-256(token) so a DB leak does
+// not expose live tokens. Each token is single-use (consumedAt) and has a
+// short TTL (24h enforced by route).
+model EmailVerificationToken {
+  id         String    @id @default(cuid())
+  userId     String
+  tokenHash  String    @unique
+  email      String
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// §6.7 — password reset tokens. Same SHA-256 storage as email verification.
+// Per-user, single-use, 1h TTL.
+model PasswordResetToken {
+  id         String    @id @default(cuid())
+  userId     String
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ===== Sellers =====
+
+model SellerProfile {
+  id                 String                   @id @default(cuid())
+  userId             String                   @unique
+  displayName        String
+  bio                String?
+  country            String?
+  websiteUrl         String?
+  contactEmail       String?
+  verificationStatus SellerVerificationStatus @default(NOT_REQUESTED)
+  verifiedAt         DateTime?
+  rating             Float                    @default(0)
+  ratingCount        Int                      @default(0)
+  pendingBalance     Int                      @default(0) // cents
+  availableBalance   Int                      @default(0) // cents
+  withdrawnBalance   Int                      @default(0) // cents
+  isBanned           Boolean                  @default(false)
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  user                 User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products             Product[]
+  verificationRequests SellerVerificationRequest[]
+  payouts              Payout[]
+  commissionRecords    CommissionRecord[]
+}
+
+model SellerVerificationRequest {
+  id                  String                   @id @default(cuid())
+  sellerId            String
+  reviewerId          String?
+  fullName            String
+  country             String
+  contactEmail        String
+  websiteUrl          String?
+  productsDescription String
+  authorizationNotes  String
+  acceptedRules       Boolean                  @default(false)
+  status              SellerVerificationStatus @default(PENDING)
+  adminFeedback       String?
+  createdAt           DateTime                 @default(now())
+  updatedAt           DateTime                 @updatedAt
+  reviewedAt          DateTime?
+
+  seller SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+}
+
+// ===== Catalog =====
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  iconKey     String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  products Product[]
+}
+
+model Product {
+  id                        String        @id @default(cuid())
+  sellerId                  String
+  categoryId                String
+  title                     String
+  slug                      String        @unique
+  shortDescription          String
+  description               String
+  productType               ProductType
+  deliveryType              DeliveryType
+  priceCents                Int
+  currency                  String        @default("RUB")
+  stockQuantity             Int           @default(0)
+  validityPeriod            String?
+  termsOfUse                String?
+  refundPolicy              String?
+  externalUrl               String? // for affiliate / external_link
+  digitalFileUrl            String? // for digital_file delivery (storage URL)
+  manualDeliveryWindowHours Int           @default(48)
+  isVerified                Boolean       @default(false)
+  isModerated               Boolean       @default(false)
+  status                    ProductStatus @default(DRAFT)
+  riskScore                 Int           @default(0)
+  views                     Int           @default(0)
+  rating                    Float         @default(0)
+  ratingCount               Int           @default(0)
+  salesCount                Int           @default(0)
+  createdAt                 DateTime      @default(now())
+  updatedAt                 DateTime      @updatedAt
+
+  seller         SellerProfile          @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  category       Category               @relation(fields: [categoryId], references: [id])
+  images         ProductImage[]
+  inventoryItems DigitalInventoryItem[]
+  orderItems     OrderItem[]
+  reviews        Review[]
+  wishlistedBy   WishlistItem[]
+  threads        MessageThread[]
+  reports        ProductReport[]
+
+  @@index([categoryId])
+  @@index([status])
+  @@index([sellerId])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  url       String
+  alt       String?
+  position  Int     @default(0)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model DigitalInventoryItem {
+  id          String                 @id @default(cuid())
+  productId   String
+  code        String // license/voucher code or file reference; protected at API layer
+  status      DigitalInventoryStatus @default(AVAILABLE)
+  deliveredAt DateTime?
+  orderItemId String?                @unique
+  createdAt   DateTime               @default(now())
+
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItem OrderItem? @relation(fields: [orderItemId], references: [id])
+}
+
+// ===== Orders =====
+
+model Order {
+  id                 String      @id @default(cuid())
+  buyerId            String
+  status             OrderStatus @default(PENDING_PAYMENT)
+  subtotalCents      Int
+  platformFeeCents   Int
+  processingFeeCents Int
+  totalCents         Int
+  currency           String      @default("RUB")
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  paidAt             DateTime?
+  deliveredAt        DateTime?
+  completedAt        DateTime?
+  refundedAt         DateTime?
+  autoCompleteAt     DateTime?
+
+  buyer            User              @relation("BuyerOrders", fields: [buyerId], references: [id], onDelete: Restrict)
+  items            OrderItem[]
+  payment          Payment?
+  dispute          Dispute?
+  reviews          Review[]
+  commissionRecord CommissionRecord?
+
+  @@index([buyerId])
+  @@index([status])
+}
+
+model OrderItem {
+  id                 String       @id @default(cuid())
+  orderId            String
+  productId          String
+  sellerId           String
+  title              String // snapshot
+  priceCents         Int
+  quantity           Int          @default(1)
+  deliveryType       DeliveryType
+  productType        ProductType
+  deliveredCode      String? // assigned license/voucher code at fulfillment
+  deliveredFileUrl   String?
+  externalUrl        String?
+  manualDeliveryNote String?
+  deliveredAt        DateTime?
+  createdAt          DateTime     @default(now())
+
+  order         Order                 @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product       Product               @relation(fields: [productId], references: [id])
+  inventoryItem DigitalInventoryItem?
+}
+
+model Payment {
+  id                  String        @id @default(cuid())
+  orderId             String        @unique
+  providerId          String        @default("yookassa") // PaymentProviderId: "yookassa" | "crypto"
+  providerPaymentId   String?       @unique
+  idempotencyKey      String?       @unique
+  status              PaymentStatus @default(PENDING)
+  amountCents         Int
+  refundedAmountCents Int           @default(0)
+  currency            String        @default("RUB")
+  buyerId             String? // snapshot for cross-checks
+  buyerEmail          String? // for 54-FZ receipt
+  paidAt              DateTime?
+  confirmationUrl     String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  refunds Refund[]
+
+  @@index([providerId])
+  @@index([status])
+}
+
+// One Refund row per PSP refund call. Multiple refunds per Payment are allowed
+// (partial refunds, retried refunds, etc.). The provider refund id is unique
+// across the whole table so a duplicate webhook can't double-process.
+model Refund {
+  id               String          @id @default(cuid())
+  paymentId        String
+  providerId       String          @default("yookassa")
+  providerRefundId String?         @unique
+  idempotencyKey   String          @unique
+  amountCents      Int
+  currency         String          @default("RUB")
+  status           RefundStatus    @default(PENDING)
+  initiator        RefundInitiator
+  reason           String
+  initiatedById    String?
+  failureReason    String?
+  createdAt        DateTime        @default(now())
+  succeededAt      DateTime?
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+  @@index([status])
+  @@index([providerId])
+}
+
+// Idempotency log for PSP webhooks (yookassa, future crypto). On receipt we
+// look up the providerEventId before processing — duplicates are silently
+// ignored. See TZ §3.5.
+model WebhookEvent {
+  id              String    @id @default(cuid())
+  providerId      String // "yookassa" | "crypto"
+  providerEventId String
+  eventType       String
+  payload         Json
+  receivedAt      DateTime  @default(now())
+  processedAt     DateTime?
+  processingError String?
+
+  @@unique([providerId, providerEventId])
+  @@index([providerId, eventType])
+}
+
+model CommissionRecord {
+  id                  String   @id @default(cuid())
+  orderId             String   @unique
+  sellerId            String
+  feePercent          Float
+  feeCents            Int
+  processingFeeCents  Int
+  sellerEarningsCents Int
+  createdAt           DateTime @default(now())
+
+  order  Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  seller SellerProfile @relation(fields: [sellerId], references: [id])
+}
+
+// ===== Reviews =====
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  sellerId  String
+  buyerId   String
+  orderId   String
+  rating    Int
+  text      String
+  isHidden  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  buyer   User    @relation("ReviewAuthor", fields: [buyerId], references: [id])
+  order   Order   @relation(fields: [orderId], references: [id])
+
+  @@unique([orderId, productId])
+  @@index([productId])
+  @@index([sellerId])
+}
+
+// ===== Wishlist =====
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+}
+
+// ===== Messaging =====
+
+model MessageThread {
+  id        String   @id @default(cuid())
+  buyerId   String
+  sellerId  String
+  productId String?
+  subject   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  buyer    User      @relation("BuyerThreads", fields: [buyerId], references: [id])
+  seller   User      @relation("SellerThreads", fields: [sellerId], references: [id])
+  product  Product?  @relation(fields: [productId], references: [id])
+  messages Message[]
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  threadId  String
+  senderId  String
+  body      String
+  createdAt DateTime @default(now())
+  flagged   Boolean  @default(false) // flagged if it appears to contain sensitive data
+
+  thread MessageThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  sender User          @relation(fields: [senderId], references: [id])
+
+  @@index([threadId])
+}
+
+// ===== Disputes =====
+
+model Dispute {
+  id          String        @id @default(cuid())
+  orderId     String        @unique
+  buyerId     String
+  sellerId    String
+  reason      String
+  description String
+  status      DisputeStatus @default(OPEN)
+  resolution  String?
+  resolvedAt  DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  order    Order            @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  buyer    User             @relation("DisputeBuyer", fields: [buyerId], references: [id])
+  seller   User             @relation("DisputeSeller", fields: [sellerId], references: [id])
+  messages DisputeMessage[]
+}
+
+model DisputeMessage {
+  id        String   @id @default(cuid())
+  disputeId String
+  senderId  String
+  body      String
+  createdAt DateTime @default(now())
+
+  dispute Dispute @relation(fields: [disputeId], references: [id], onDelete: Cascade)
+  sender  User    @relation(fields: [senderId], references: [id])
+}
+
+// ===== Reporting =====
+
+model ProductReport {
+  id          String       @id @default(cuid())
+  productId   String
+  reporterId  String
+  reason      ReportReason
+  description String?
+  status      ReportStatus @default(OPEN)
+  createdAt   DateTime     @default(now())
+  resolvedAt  DateTime?
+  resolution  String?
+
+  product  Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  reporter User    @relation("ReportFiler", fields: [reporterId], references: [id])
+}
+
+// ===== Admin =====
+
+model AuditLog {
+  id        String      @id @default(cuid())
+  actorId   String?
+  action    AuditAction
+  subject   String // e.g. "Product:abc123"
+  metadata  String? // JSON string
+  createdAt DateTime    @default(now())
+
+  actor User? @relation("AuditActor", fields: [actorId], references: [id])
+}
+
+// ===== Payouts =====
+
+model Payout {
+  id               String       @id @default(cuid())
+  sellerId         String
+  amountCents      Int
+  method           String?
+  status           PayoutStatus @default(PENDING)
+  createdAt        DateTime     @default(now())
+  paidAt           DateTime?
+  notes            String?
+  // §6.2 — bank/card details. Stored as AES-256-GCM ciphertext via
+  // src/lib/crypto.ts. Plaintext shape: { type, account, recipientName } as JSON.
+  detailsEncrypted String?
+  // §7.2 — admin payouts UI audit trail. Operator who approved/paid/rejected,
+  // when, and the external transfer reference (e.g. Tinkoff txn id) if any.
+  externalTxnId    String?
+  processedById    String?
+  processedAt      DateTime?
+  failureReason    String?
+
+  seller      SellerProfile @relation(fields: [sellerId], references: [id])
+  processedBy User?         @relation("PayoutProcessedBy", fields: [processedById], references: [id])
+
+  @@index([status])
+  @@index([processedById])
+}

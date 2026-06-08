@@ -1,0 +1,15 @@
+node_modules
+.next
+.env
+.env.local
+.env.*.local
+dist
+coverage
+playwright-report
+test-results
+.vercel
+*.log
+.DS_Store
+tsconfig.tsbuildinfo
+# user-uploaded files (local STORAGE_PROVIDER); we never commit them
+public/uploads

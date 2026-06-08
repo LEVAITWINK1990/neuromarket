@@ -1,0 +1,11 @@
+node_modules
+.next
+playwright-report
+test-results
+dist
+coverage
+.vercel
+*.log
+prisma/migrations
+package-lock.json
+public/seed

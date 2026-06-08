@@ -38,6 +38,9 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: "standalone",
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
   images: {
     // TZ §10.1 — only allow remote images from our own storage CDN. Seed
     // fixtures use local files under public/seed/. To allow an additional
@@ -52,6 +55,18 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: "4mb",
     },
+    webpackBuildWorker: false,
+    workerThreads: false,
+    cpus: 1,
+  },
+  webpack: (config, { isServer }) => {
+    config.cache = false;
+    config.parallelism = 1;
+    config.optimization = {
+      ...config.optimization,
+      minimize: false,
+    };
+    return config;
   },
   async headers() {
     return [

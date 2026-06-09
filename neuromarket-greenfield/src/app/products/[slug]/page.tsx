@@ -75,41 +75,71 @@ export default function ProductDetailPage() {
           / <span className="text-white/70">{product.title}</span>
         </div>
 
-        <section className="grid gap-6 lg:grid-cols-[0.95fr_0.55fr]">
-          <div className="rounded-[32px] border border-white/10 bg-[#11161f] p-5">
-            <div
-              className="rounded-[28px] p-6"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${product.cover.from}, ${product.cover.via}, ${product.cover.to})`,
-              }}
-            >
-              <div className="text-xs font-black uppercase tracking-[0.24em] text-white/70">
-                {product.cover.eyebrow}
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,0.55fr)] lg:items-start">
+          <div className="space-y-6">
+            <div className="rounded-[32px] border border-white/10 bg-[#11161f] p-5">
+              <div
+                className="rounded-[28px] p-6"
+                style={{
+                  backgroundImage: `linear-gradient(135deg, ${product.cover.from}, ${product.cover.via}, ${product.cover.to})`,
+                }}
+              >
+                <div className="text-xs font-black uppercase tracking-[0.24em] text-white/70">
+                  {product.cover.eyebrow}
+                </div>
+                <div className="mt-8 text-[140px] font-black leading-none text-white/90">
+                  {product.cover.glyph}
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2 text-xs text-white">
+                  <span className="rounded-full bg-black/25 px-3 py-2">{product.productType}</span>
+                  <span className="rounded-full bg-black/25 px-3 py-2">{product.deliveryType}</span>
+                  <span className="rounded-full bg-black/25 px-3 py-2">{product.coverage}</span>
+                </div>
               </div>
-              <div className="mt-8 text-[140px] font-black leading-none text-white/90">
-                {product.cover.glyph}
-              </div>
-              <div className="mt-6 flex flex-wrap gap-2 text-xs text-white">
-                <span className="rounded-full bg-black/25 px-3 py-2">{product.productType}</span>
-                <span className="rounded-full bg-black/25 px-3 py-2">{product.deliveryType}</span>
-                <span className="rounded-full bg-black/25 px-3 py-2">{product.coverage}</span>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                {[product.cover.from, product.cover.via, product.cover.to].map((color) => (
+                  <div
+                    key={color}
+                    className="rounded-[22px] border border-white/10 p-5"
+                    style={{ backgroundColor: color }}
+                  >
+                    <div className="text-4xl font-black text-white/90">{product.cover.glyph}</div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              {[product.cover.from, product.cover.via, product.cover.to].map((color) => (
-                <div
-                  key={color}
-                  className="rounded-[22px] border border-white/10 p-5"
-                  style={{ backgroundColor: color }}
-                >
-                  <div className="text-4xl font-black text-white/90">{product.cover.glyph}</div>
-                </div>
-              ))}
+
+            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
+              <h2 className="text-2xl font-black text-white">Описание</h2>
+              <p className="mt-4 text-sm leading-7 text-white/65">{product.description}</p>
+            </div>
+
+            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
+              <h2 className="text-2xl font-black text-white">What you receive</h2>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {product.whatYouReceive.map((item) => (
+                  <div key={item} className="rounded-[22px] bg-[#0d131c] p-4 text-sm text-white/70">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
+              <h2 className="text-2xl font-black text-white">FAQ</h2>
+              <div className="mt-4 space-y-3">
+                {product.faq.map((item) => (
+                  <div key={item.question} className="rounded-[22px] bg-[#0d131c] p-5">
+                    <div className="font-bold text-white">{item.question}</div>
+                    <div className="mt-2 text-sm text-white/60">{item.answer}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-[32px] border border-white/10 bg-[#11161f] p-6">
+            <div className="rounded-[32px] border border-white/10 bg-[#11161f] p-6 lg:sticky lg:top-28">
               <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/45">
                 <span>{category?.label}</span>
                 <span>•</span>
@@ -213,39 +243,6 @@ export default function ProductDetailPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-[0.65fr_0.35fr]">
-          <div className="space-y-6">
-            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
-              <h2 className="text-2xl font-black text-white">Описание</h2>
-              <p className="mt-4 text-sm leading-7 text-white/65">{product.description}</p>
-            </div>
-            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
-              <h2 className="text-2xl font-black text-white">What you receive</h2>
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {product.whatYouReceive.map((item) => (
-                  <div key={item} className="rounded-[22px] bg-[#0d131c] p-4 text-sm text-white/70">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
-              <h2 className="text-2xl font-black text-white">FAQ</h2>
-              <div className="mt-4 space-y-3">
-                {product.faq.map((item) => (
-                  <div key={item.question} className="rounded-[22px] bg-[#0d131c] p-5">
-                    <div className="font-bold text-white">{item.question}</div>
-                    <div className="mt-2 text-sm text-white/60">{item.answer}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4">
             <div className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
               <h2 className="text-xl font-black text-white">Terms & policy</h2>
               <div className="mt-4 space-y-4 text-sm text-white/65">

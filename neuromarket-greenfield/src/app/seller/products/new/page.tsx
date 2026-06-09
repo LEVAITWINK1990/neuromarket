@@ -13,7 +13,7 @@ export default function SellerNewProductPage() {
   const { createSellerProduct, currentUser } = useDemoStore();
   const [title, setTitle] = useState("Custom AI Offer");
   const [shortDescription, setShortDescription] = useState(
-    "Manual listing created from scratch in the greenfield app.",
+    "Manual delivery listing for custom setup, consulting, or account migration support.",
   );
   const [price, setPrice] = useState("39.99");
   const [categoryId, setCategoryId] = useState("chatgpt");

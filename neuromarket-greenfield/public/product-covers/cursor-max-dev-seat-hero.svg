@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 820" role="img" aria-label="CURSOR MAX hero art">
+  
+    <defs>
+      <linearGradient id="bghero4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accenthero4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00a3ff" />
+        <stop offset="55%" stop-color="#6be4ff" />
+        <stop offset="100%" stop-color="#ff8a00" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#6be4ff" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#00a3ff" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00a3ff" />
+        <stop offset="50%" stop-color="#6be4ff" />
+        <stop offset="100%" stop-color="#ff8a00" />
+      </linearGradient>
+      <pattern id="gridhero4" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noisehero4" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurhero4">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1800" height="820" fill="url(#bghero4)"/>
+  <rect width="1800" height="820" fill="url(#gridhero4)" opacity=".36"/>
+  <rect width="1800" height="820" fill="url(#fade4)"/>
+  <defs>
+    <linearGradient id="fade4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(8,11,16,.98)"/>
+      <stop offset="34%" stop-color="rgba(8,11,16,.88)"/>
+      <stop offset="58%" stop-color="rgba(8,11,16,.48)"/>
+      <stop offset="82%" stop-color="rgba(8,11,16,.08)"/>
+      <stop offset="100%" stop-color="rgba(9,12,16,0)"/>
+    </linearGradient>
+  </defs>
+  <path d="M620 0h1180v820H460c164-96 280-206 348-330c80-146 115-310 112-490z" fill="rgba(255,255,255,.02)"/>
+  <ellipse cx="1360" cy="222" rx="360" ry="250" fill="#00a3ff" opacity=".22" filter="url(#blurhero4)"/>
+  <ellipse cx="1190" cy="642" rx="420" ry="250" fill="#6be4ff" opacity=".16" filter="url(#blurhero4)"/>
+  <ellipse cx="1660" cy="500" rx="190" ry="190" fill="#ff8a00" opacity=".1" filter="url(#blurhero4)"/>
+  <g transform="translate(760 -80) scale(.72)">
+    
+        <g opacity="0.96">
+          <rect x="248" y="270" width="722" height="712" rx="48" fill="url(#glassA)" />
+          <rect x="248" y="270" width="722" height="82" rx="48" fill="#fff" opacity="0.08" />
+          <circle cx="330" cy="312" r="12" fill="#00a3ff" />
+          <circle cx="374" cy="312" r="12" fill="#6be4ff" />
+          <circle cx="418" cy="312" r="12" fill="#ff8a00" />
+          <path d="M418 570l-98 92l98 92" stroke="#fff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity=".9" />
+          <path d="M796 570l98 92l-98 92" stroke="#ff8a00" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity=".9" />
+          <path d="M580 504l-78 314" stroke="#6be4ff" stroke-width="26" stroke-linecap="round" opacity=".92" />
+          <path d="M386 438h298" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".3" />
+          <path d="M386 470h220" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".18" />
+        </g>
+  </g>
+  <g transform="translate(1180 126) rotate(-5 210 258)">
+    <rect width="420" height="516" rx="32" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)"/>
+    <rect x="28" y="28" width="364" height="460" rx="26" fill="rgba(8,11,16,.74)" stroke="rgba(255,255,255,.08)"/>
+    <rect x="60" y="70" width="144" height="10" rx="5" fill="url(#accenthero4)"/>
+    <text x="60" y="118" fill="rgba(255,255,255,.78)" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CURSOR</text>
+    <text x="60" y="214" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">CURSOR</text>
+    <text x="60" y="280" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">MAX</text>
+    <rect x="60" y="332" width="242" height="16" rx="8" fill="rgba(255,255,255,.2)"/>
+    <rect x="60" y="372" width="198" height="16" rx="8" fill="rgba(255,255,255,.12)"/>
+    <rect x="60" y="412" width="278" height="16" rx="8" fill="rgba(255,255,255,.16)"/>
+    <rect x="60" y="452" width="116" height="20" rx="10" fill="#00a3ff" opacity=".84"/>
+  </g>
+  <path d="M1134 128l166 0" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+  <path d="M1110 164l142 0" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+  <rect width="1800" height="820" filter="url(#noisehero4)" opacity=".14"/>
+</svg>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 1600" role="img" aria-label="CURSOR MAX product cover">
+  
+    <defs>
+      <linearGradient id="bgposter4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accentposter4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00a3ff" />
+        <stop offset="55%" stop-color="#6be4ff" />
+        <stop offset="100%" stop-color="#ff8a00" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#6be4ff" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#00a3ff" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00a3ff" />
+        <stop offset="50%" stop-color="#6be4ff" />
+        <stop offset="100%" stop-color="#ff8a00" />
+      </linearGradient>
+      <pattern id="gridposter4" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noiseposter4" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurposter4">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1260" height="1600" fill="url(#bgposter4)"/>
+  <rect width="1260" height="1600" fill="url(#gridposter4)" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter4)" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="#00a3ff" opacity=".18" filter="url(#blurposter4)"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="#6be4ff" opacity=".14" filter="url(#blurposter4)"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="#ff8a00" opacity=".08" filter="url(#blurposter4)"/>
+  <g transform="translate(-36 -80) scale(1.08)">
+        <g opacity="0.96">
+          <rect x="248" y="270" width="722" height="712" rx="48" fill="url(#glassA)" />
+          <rect x="248" y="270" width="722" height="82" rx="48" fill="#fff" opacity="0.08" />
+          <circle cx="330" cy="312" r="12" fill="#00a3ff" />
+          <circle cx="374" cy="312" r="12" fill="#6be4ff" />
+          <circle cx="418" cy="312" r="12" fill="#ff8a00" />
+          <path d="M418 570l-98 92l98 92" stroke="#fff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity=".9" />
+          <path d="M796 570l98 92l-98 92" stroke="#ff8a00" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" opacity=".9" />
+          <path d="M580 504l-78 314" stroke="#6be4ff" stroke-width="26" stroke-linecap="round" opacity=".92" />
+          <path d="M386 438h298" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".3" />
+          <path d="M386 470h220" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".18" />
+        </g></g>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CURSOR</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="#00a3ff"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">DEV TOOLS</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter4)"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">CURSOR</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">MAX</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">CURSOR DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
+  </g>
+  <rect width="1260" height="1600" filter="url(#noiseposter4)" opacity=".18"/>
+</svg>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 1600" role="img" aria-label="CLAUDE PRO product cover">
+  
+    <defs>
+      <linearGradient id="bgposter2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accentposter2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#7f5cff" />
+        <stop offset="55%" stop-color="#d182ff" />
+        <stop offset="100%" stop-color="#ff9a54" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#d182ff" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#7f5cff" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#7f5cff" />
+        <stop offset="50%" stop-color="#d182ff" />
+        <stop offset="100%" stop-color="#ff9a54" />
+      </linearGradient>
+      <pattern id="gridposter2" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noiseposter2" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurposter2">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1260" height="1600" fill="url(#bgposter2)"/>
+  <rect width="1260" height="1600" fill="url(#gridposter2)" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter2)" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="#7f5cff" opacity=".18" filter="url(#blurposter2)"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="#d182ff" opacity=".14" filter="url(#blurposter2)"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="#ff9a54" opacity=".08" filter="url(#blurposter2)"/>
+  <g transform="translate(-36 -80) scale(1.08)">
+        <g opacity="0.96">
+          <rect x="330" y="250" width="560" height="780" rx="54" fill="url(#glassA)" />
+          <rect x="390" y="318" width="440" height="112" rx="26" fill="#ffffff" opacity="0.1" />
+          <rect x="390" y="468" width="440" height="112" rx="26" fill="#ffffff" opacity="0.08" />
+          <rect x="390" y="618" width="440" height="112" rx="26" fill="#ffffff" opacity="0.08" />
+          <rect x="390" y="768" width="360" height="112" rx="26" fill="#ffffff" opacity="0.08" />
+          <circle cx="965" cy="482" r="132" fill="url(#orbA)" opacity="0.9" />
+          <path d="M290 980c115-150 288-233 518-248" stroke="#d182ff" stroke-width="26" stroke-linecap="round" opacity=".78" />
+        </g></g>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CLAUDE</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="#7f5cff"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">VERIFIED</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter2)"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">CLAUDE</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">PRO</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">CLAUDE DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
+  </g>
+  <rect width="1260" height="1600" filter="url(#noiseposter2)" opacity=".18"/>
+</svg>

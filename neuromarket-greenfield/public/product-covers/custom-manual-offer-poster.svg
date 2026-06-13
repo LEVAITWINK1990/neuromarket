@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 1600" role="img" aria-label="CUSTOM OFFER product cover">
+  
+    <defs>
+      <linearGradient id="bgposter11" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accentposter11" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ff7a00" />
+        <stop offset="55%" stop-color="#ffd25f" />
+        <stop offset="100%" stop-color="#ffeec1" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#ffd25f" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#ff7a00" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ff7a00" />
+        <stop offset="50%" stop-color="#ffd25f" />
+        <stop offset="100%" stop-color="#ffeec1" />
+      </linearGradient>
+      <pattern id="gridposter11" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noiseposter11" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurposter11">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1260" height="1600" fill="url(#bgposter11)"/>
+  <rect width="1260" height="1600" fill="url(#gridposter11)" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter11)" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="#ff7a00" opacity=".18" filter="url(#blurposter11)"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="#ffd25f" opacity=".14" filter="url(#blurposter11)"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="#ffeec1" opacity=".08" filter="url(#blurposter11)"/>
+  <g transform="translate(-36 -80) scale(1.08)">
+        <g opacity="0.97">
+          <path d="M300 868h188v-160h222v160h250" stroke="url(#panelLine)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          <circle cx="300" cy="868" r="54" fill="#ff7a00" />
+          <circle cx="488" cy="708" r="54" fill="#ffd25f" />
+          <circle cx="710" cy="708" r="54" fill="#ffeec1" />
+          <circle cx="960" cy="868" r="54" fill="#ff7a00" />
+          <rect x="414" y="312" width="424" height="224" rx="34" fill="url(#glassA)" />
+          <path d="M474 400h280" stroke="#fff" stroke-width="20" stroke-linecap="round" opacity=".76" />
+          <path d="M474 456h188" stroke="#fff" stroke-width="20" stroke-linecap="round" opacity=".36" />
+          <circle cx="952" cy="362" r="112" fill="url(#orbA)" opacity=".88" />
+        </g></g>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CUSTOM</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="#ff7a00"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">PENDING</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter11)"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">CUSTOM</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">OFFER</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">CUSTOM DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
+  </g>
+  <rect width="1260" height="1600" filter="url(#noiseposter11)" opacity=".18"/>
+</svg>

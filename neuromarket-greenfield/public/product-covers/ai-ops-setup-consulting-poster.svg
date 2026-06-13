@@ -44,10 +44,13 @@
       </filter>
     </defs>
   <rect width="1260" height="1600" fill="url(#bgposter10)"/>
-  <rect width="1260" height="1600" fill="url(#gridposter10)" opacity=".6"/>
-  <ellipse cx="972" cy="330" rx="320" ry="240" fill="#ff9a2f" opacity=".16" filter="url(#blurposter10)"/>
-  <ellipse cx="300" cy="1180" rx="360" ry="240" fill="#ffc05b" opacity=".12" filter="url(#blurposter10)"/>
-  <g>
+  <rect width="1260" height="1600" fill="url(#gridposter10)" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter10)" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="#ff9a2f" opacity=".18" filter="url(#blurposter10)"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="#ffc05b" opacity=".14" filter="url(#blurposter10)"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="#ffd978" opacity=".08" filter="url(#blurposter10)"/>
+  <g transform="translate(-36 -80) scale(1.08)">
         <g opacity="0.97">
           <path d="M300 868h188v-160h222v160h250" stroke="url(#panelLine)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" fill="none" />
           <circle cx="300" cy="868" r="54" fill="#ff9a2f" />
@@ -59,16 +62,18 @@
           <path d="M474 456h188" stroke="#fff" stroke-width="20" stroke-linecap="round" opacity=".36" />
           <circle cx="952" cy="362" r="112" fill="url(#orbA)" opacity=".88" />
         </g></g>
-  <rect x="64" y="64" width="320" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
-  <text x="102" y="99" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">AI OPS</text>
-  <rect x="920" y="64" width="276" height="54" rx="27" fill="#ff9a2f"/>
-  <text x="1058" y="99" fill="#ffffff" text-anchor="middle" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">SERVICE</text>
-  <g transform="translate(78 1188)">
-    <rect width="1104" height="334" rx="44" fill="rgba(9,12,16,.78)" stroke="rgba(255,255,255,.12)"/>
-    <rect x="36" y="36" width="220" height="10" rx="5" fill="url(#accentposter10)"/>
-    <text x="40" y="138" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">AI OPS</text>
-    <text x="40" y="246" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">SETUP</text>
-    <text x="40" y="302" fill="rgba(255,255,255,.72)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified AI marketplace offer with instant delivery styling.</text>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">AI OPS</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="#ff9a2f"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">SERVICE</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter10)"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">AI OPS</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">SETUP</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">AI OPS DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
   </g>
   <rect width="1260" height="1600" filter="url(#noiseposter10)" opacity=".18"/>
 </svg>

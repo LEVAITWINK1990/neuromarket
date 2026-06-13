@@ -291,20 +291,25 @@ function renderPoster(cover, index) {
   )}">
   ${baseDefs(cover.accent, `poster${index}`)}
   <rect width="1260" height="1600" fill="url(#bgposter${index})"/>
-  <rect width="1260" height="1600" fill="url(#gridposter${index})" opacity=".6"/>
-  <ellipse cx="972" cy="330" rx="320" ry="240" fill="${cover.accent[0]}" opacity=".16" filter="url(#blurposter${index})"/>
-  <ellipse cx="300" cy="1180" rx="360" ry="240" fill="${cover.accent[1]}" opacity=".12" filter="url(#blurposter${index})"/>
-  <g>${motifShapes(cover.motif, cover.accent)}</g>
-  <rect x="64" y="64" width="320" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
-  <text x="102" y="99" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">${category}</text>
-  <rect x="920" y="64" width="276" height="54" rx="27" fill="${cover.accent[0]}"/>
-  <text x="1058" y="99" fill="#ffffff" text-anchor="middle" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">${tag}</text>
-  <g transform="translate(78 1188)">
-    <rect width="1104" height="334" rx="44" fill="rgba(9,12,16,.78)" stroke="rgba(255,255,255,.12)"/>
-    <rect x="36" y="36" width="220" height="10" rx="5" fill="url(#accentposter${index})"/>
-    <text x="40" y="138" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">${line1}</text>
-    <text x="40" y="246" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">${line2}</text>
-    <text x="40" y="302" fill="rgba(255,255,255,.72)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified AI marketplace offer with instant delivery styling.</text>
+  <rect width="1260" height="1600" fill="url(#gridposter${index})" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter${index})" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="${cover.accent[0]}" opacity=".18" filter="url(#blurposter${index})"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="${cover.accent[1]}" opacity=".14" filter="url(#blurposter${index})"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="${cover.accent[2]}" opacity=".08" filter="url(#blurposter${index})"/>
+  <g transform="translate(-36 -80) scale(1.08)">${motifShapes(cover.motif, cover.accent)}</g>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">${category}</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="${cover.accent[0]}"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">${tag}</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter${index})"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">${line1}</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">${line2}</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">${category} DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
   </g>
   <rect width="1260" height="1600" filter="url(#noiseposter${index})" opacity=".18"/>
 </svg>`;
@@ -323,31 +328,38 @@ function renderHero(cover, index) {
   <rect width="1800" height="820" fill="url(#fade${index})"/>
   <defs>
     <linearGradient id="fade${index}" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="rgba(9,12,16,.92)"/>
-      <stop offset="42%" stop-color="rgba(9,12,16,.68)"/>
-      <stop offset="80%" stop-color="rgba(9,12,16,.12)"/>
+      <stop offset="0%" stop-color="rgba(8,11,16,.98)"/>
+      <stop offset="34%" stop-color="rgba(8,11,16,.88)"/>
+      <stop offset="58%" stop-color="rgba(8,11,16,.48)"/>
+      <stop offset="82%" stop-color="rgba(8,11,16,.08)"/>
       <stop offset="100%" stop-color="rgba(9,12,16,0)"/>
     </linearGradient>
   </defs>
-  <ellipse cx="1390" cy="240" rx="350" ry="230" fill="${cover.accent[0]}" opacity=".18" filter="url(#blurhero${index})"/>
-  <ellipse cx="1250" cy="660" rx="360" ry="220" fill="${cover.accent[1]}" opacity=".14" filter="url(#blurhero${index})"/>
-  <g transform="translate(700 -120) scale(.64)">
+  <path d="M620 0h1180v820H460c164-96 280-206 348-330c80-146 115-310 112-490z" fill="rgba(255,255,255,.02)"/>
+  <ellipse cx="1360" cy="222" rx="360" ry="250" fill="${cover.accent[0]}" opacity=".22" filter="url(#blurhero${index})"/>
+  <ellipse cx="1190" cy="642" rx="420" ry="250" fill="${cover.accent[1]}" opacity=".16" filter="url(#blurhero${index})"/>
+  <ellipse cx="1660" cy="500" rx="190" ry="190" fill="${cover.accent[2]}" opacity=".1" filter="url(#blurhero${index})"/>
+  <g transform="translate(760 -80) scale(.72)">
     ${motifShapes(cover.motif, cover.accent)}
   </g>
-  <rect x="1210" y="126" width="360" height="500" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.16)"/>
-  <rect x="1240" y="156" width="300" height="14" rx="7" fill="url(#accenthero${index})"/>
-  <text x="1240" y="240" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">${esc(
-    cover.display[0],
-  )}</text>
-  <text x="1240" y="300" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">${esc(
-    cover.display[1],
-  )}</text>
-  <text x="1240" y="352" fill="rgba(255,255,255,.72)" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="600">${category} marketplace art</text>
-  <g transform="translate(1240 404)">
-    <rect width="272" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
-    <rect y="84" width="214" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
-    <rect y="168" width="248" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
+  <g transform="translate(1180 126) rotate(-5 210 258)">
+    <rect width="420" height="516" rx="32" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)"/>
+    <rect x="28" y="28" width="364" height="460" rx="26" fill="rgba(8,11,16,.74)" stroke="rgba(255,255,255,.08)"/>
+    <rect x="60" y="70" width="144" height="10" rx="5" fill="url(#accenthero${index})"/>
+    <text x="60" y="118" fill="rgba(255,255,255,.78)" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">${category}</text>
+    <text x="60" y="214" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">${esc(
+      cover.display[0],
+    )}</text>
+    <text x="60" y="280" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">${esc(
+      cover.display[1],
+    )}</text>
+    <rect x="60" y="332" width="242" height="16" rx="8" fill="rgba(255,255,255,.2)"/>
+    <rect x="60" y="372" width="198" height="16" rx="8" fill="rgba(255,255,255,.12)"/>
+    <rect x="60" y="412" width="278" height="16" rx="8" fill="rgba(255,255,255,.16)"/>
+    <rect x="60" y="452" width="116" height="20" rx="10" fill="${cover.accent[0]}" opacity=".84"/>
   </g>
+  <path d="M1134 128l166 0" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+  <path d="M1110 164l142 0" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
   <rect width="1800" height="820" filter="url(#noisehero${index})" opacity=".14"/>
 </svg>`;
 }

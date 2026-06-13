@@ -36,7 +36,7 @@ export function HeroBanner({ slides }: { slides: DemoProduct[] }) {
         </div>
 
         <div className="relative overflow-hidden rounded-[12px]">
-          <div className="relative aspect-[16/5.4] min-h-[280px] bg-[#1f262e]">
+          <div className="relative aspect-[16/5.3] min-h-[280px] bg-[#1f262e]">
             {slides.map((slide, slideIndex) => (
               <div
                 key={slide.id}
@@ -47,18 +47,19 @@ export function HeroBanner({ slides }: { slides: DemoProduct[] }) {
                 <img
                   src={slide.media.hero}
                   alt={slide.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover object-center"
                   draggable={false}
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,19,24,0.82)_0%,rgba(16,19,24,0.35)_38%,rgba(16,19,24,0)_68%)]" />
-                <div className="absolute bottom-10 left-10 z-[2]">
-                  <div className="mb-2 inline-flex rounded-[4px] bg-black/35 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,14,19,0.92)_0%,rgba(11,14,19,0.82)_28%,rgba(11,14,19,0.38)_56%,rgba(11,14,19,0.06)_78%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_42%,rgba(255,122,0,0.2),transparent_28%)]" />
+                <div className="absolute bottom-10 left-10 z-[2] max-w-[440px]">
+                  <div className="mb-3 inline-flex rounded-[4px] bg-black/38 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
                     {slide.cover.eyebrow}
                   </div>
-                  <h1 className="max-w-[14ch] text-[32px] font-bold leading-10 text-white">
+                  <h1 className="max-w-[10ch] text-[32px] font-black leading-[1.05] text-white xl:text-[38px]">
                     {slide.title}
                   </h1>
-                  <div className="mt-1 text-[19px] font-bold text-white">
+                  <div className="mt-2 text-[20px] font-bold text-white">
                     from <span>{formatMoney(slide.price)}</span>
                   </div>
                 </div>
@@ -107,12 +108,15 @@ export function HeroBanner({ slides }: { slides: DemoProduct[] }) {
               slideIndex === index ? "border-white" : "border-transparent"
             }`}
           >
-            <div className="aspect-[16/10]">
-              <img
-                src={slide.media.hero}
-                alt={slide.title}
-                className="h-full w-full object-cover"
-              />
+            <div className="aspect-[16/10] bg-[#11161f] p-2">
+              <div className="relative h-full overflow-hidden rounded-[10px] border border-white/10 bg-[#0e131b]">
+                <img
+                  src={slide.media.poster}
+                  alt={slide.title}
+                  className="h-full w-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(11,14,19,0)_0%,rgba(11,14,19,0.5)_100%)]" />
+              </div>
             </div>
             <div
               className={`absolute inset-0 transition ${

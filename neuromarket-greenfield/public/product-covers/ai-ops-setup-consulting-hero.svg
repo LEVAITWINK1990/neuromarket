@@ -48,15 +48,18 @@
   <rect width="1800" height="820" fill="url(#fade10)"/>
   <defs>
     <linearGradient id="fade10" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="rgba(9,12,16,.92)"/>
-      <stop offset="42%" stop-color="rgba(9,12,16,.68)"/>
-      <stop offset="80%" stop-color="rgba(9,12,16,.12)"/>
+      <stop offset="0%" stop-color="rgba(8,11,16,.98)"/>
+      <stop offset="34%" stop-color="rgba(8,11,16,.88)"/>
+      <stop offset="58%" stop-color="rgba(8,11,16,.48)"/>
+      <stop offset="82%" stop-color="rgba(8,11,16,.08)"/>
       <stop offset="100%" stop-color="rgba(9,12,16,0)"/>
     </linearGradient>
   </defs>
-  <ellipse cx="1390" cy="240" rx="350" ry="230" fill="#ff9a2f" opacity=".18" filter="url(#blurhero10)"/>
-  <ellipse cx="1250" cy="660" rx="360" ry="220" fill="#ffc05b" opacity=".14" filter="url(#blurhero10)"/>
-  <g transform="translate(700 -120) scale(.64)">
+  <path d="M620 0h1180v820H460c164-96 280-206 348-330c80-146 115-310 112-490z" fill="rgba(255,255,255,.02)"/>
+  <ellipse cx="1360" cy="222" rx="360" ry="250" fill="#ff9a2f" opacity=".22" filter="url(#blurhero10)"/>
+  <ellipse cx="1190" cy="642" rx="420" ry="250" fill="#ffc05b" opacity=".16" filter="url(#blurhero10)"/>
+  <ellipse cx="1660" cy="500" rx="190" ry="190" fill="#ffd978" opacity=".1" filter="url(#blurhero10)"/>
+  <g transform="translate(760 -80) scale(.72)">
     
         <g opacity="0.97">
           <path d="M300 868h188v-160h222v160h250" stroke="url(#panelLine)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" fill="none" />
@@ -70,15 +73,19 @@
           <circle cx="952" cy="362" r="112" fill="url(#orbA)" opacity=".88" />
         </g>
   </g>
-  <rect x="1210" y="126" width="360" height="500" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.16)"/>
-  <rect x="1240" y="156" width="300" height="14" rx="7" fill="url(#accenthero10)"/>
-  <text x="1240" y="240" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">AI OPS</text>
-  <text x="1240" y="300" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">SETUP</text>
-  <text x="1240" y="352" fill="rgba(255,255,255,.72)" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="600">AI OPS marketplace art</text>
-  <g transform="translate(1240 404)">
-    <rect width="272" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
-    <rect y="84" width="214" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
-    <rect y="168" width="248" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
+  <g transform="translate(1180 126) rotate(-5 210 258)">
+    <rect width="420" height="516" rx="32" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.18)"/>
+    <rect x="28" y="28" width="364" height="460" rx="26" fill="rgba(8,11,16,.74)" stroke="rgba(255,255,255,.08)"/>
+    <rect x="60" y="70" width="144" height="10" rx="5" fill="url(#accenthero10)"/>
+    <text x="60" y="118" fill="rgba(255,255,255,.78)" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">AI OPS</text>
+    <text x="60" y="214" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">AI OPS</text>
+    <text x="60" y="280" fill="#ffffff" font-size="58" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">SETUP</text>
+    <rect x="60" y="332" width="242" height="16" rx="8" fill="rgba(255,255,255,.2)"/>
+    <rect x="60" y="372" width="198" height="16" rx="8" fill="rgba(255,255,255,.12)"/>
+    <rect x="60" y="412" width="278" height="16" rx="8" fill="rgba(255,255,255,.16)"/>
+    <rect x="60" y="452" width="116" height="20" rx="10" fill="#ff9a2f" opacity=".84"/>
   </g>
+  <path d="M1134 128l166 0" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+  <path d="M1110 164l142 0" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
   <rect width="1800" height="820" filter="url(#noisehero10)" opacity=".14"/>
 </svg>

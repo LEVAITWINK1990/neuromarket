@@ -44,10 +44,13 @@
       </filter>
     </defs>
   <rect width="1260" height="1600" fill="url(#bgposter9)"/>
-  <rect width="1260" height="1600" fill="url(#gridposter9)" opacity=".6"/>
-  <ellipse cx="972" cy="330" rx="320" ry="240" fill="#ff5a5a" opacity=".16" filter="url(#blurposter9)"/>
-  <ellipse cx="300" cy="1180" rx="360" ry="240" fill="#ff8a00" opacity=".12" filter="url(#blurposter9)"/>
-  <g>
+  <rect width="1260" height="1600" fill="url(#gridposter9)" opacity=".44"/>
+  <rect width="1260" height="1600" fill="url(#accentposter9)" opacity=".06"/>
+  <path d="M0 1260L1260 560V1600H0Z" fill="rgba(255,255,255,.03)"/>
+  <ellipse cx="978" cy="270" rx="340" ry="240" fill="#ff5a5a" opacity=".18" filter="url(#blurposter9)"/>
+  <ellipse cx="360" cy="1108" rx="430" ry="320" fill="#ff8a00" opacity=".14" filter="url(#blurposter9)"/>
+  <ellipse cx="920" cy="1440" rx="360" ry="220" fill="#ffbe55" opacity=".08" filter="url(#blurposter9)"/>
+  <g transform="translate(-36 -80) scale(1.08)">
         <g opacity="0.97">
           <rect x="268" y="338" width="724" height="588" rx="52" fill="url(#glassA)" />
           <rect x="268" y="838" width="724" height="88" rx="44" fill="#ffffff" opacity=".08" />
@@ -58,16 +61,18 @@
           <rect x="340" y="860" width="58" height="42" rx="18" fill="#fff" opacity=".14" /><rect x="470" y="860" width="58" height="42" rx="18" fill="#fff" opacity=".14" /><rect x="600" y="860" width="58" height="42" rx="18" fill="#fff" opacity=".14" /><rect x="730" y="860" width="58" height="42" rx="18" fill="#fff" opacity=".14" /><rect x="860" y="860" width="58" height="42" rx="18" fill="#fff" opacity=".14" />
           <circle cx="948" cy="334" r="116" fill="url(#orbA)" opacity=".88" />
         </g></g>
-  <rect x="64" y="64" width="320" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
-  <text x="102" y="99" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CAPCUT</text>
-  <rect x="920" y="64" width="276" height="54" rx="27" fill="#ff5a5a"/>
-  <text x="1058" y="99" fill="#ffffff" text-anchor="middle" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">TRENDING</text>
-  <g transform="translate(78 1188)">
-    <rect width="1104" height="334" rx="44" fill="rgba(9,12,16,.78)" stroke="rgba(255,255,255,.12)"/>
-    <rect x="36" y="36" width="220" height="10" rx="5" fill="url(#accentposter9)"/>
-    <text x="40" y="138" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">CAPCUT</text>
-    <text x="40" y="246" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">PRO</text>
-    <text x="40" y="302" fill="rgba(255,255,255,.72)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified AI marketplace offer with instant delivery styling.</text>
+  <rect x="42" y="42" width="1176" height="1516" rx="42" fill="none" stroke="rgba(255,255,255,.08)"/>
+  <rect x="74" y="74" width="294" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="112" y="109" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">CAPCUT</text>
+  <rect x="926" y="74" width="260" height="54" rx="27" fill="#ff5a5a"/>
+  <text x="1056" y="109" fill="#ffffff" text-anchor="middle" font-size="20" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">TRENDING</text>
+  <g transform="translate(74 1128)">
+    <rect width="1112" height="370" rx="46" fill="rgba(8,11,16,.84)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="38" y="40" width="238" height="12" rx="6" fill="url(#accentposter9)"/>
+    <text x="40" y="154" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">CAPCUT</text>
+    <text x="40" y="272" fill="#ffffff" font-size="112" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-3">PRO</text>
+    <text x="40" y="326" fill="rgba(255,255,255,.72)" font-size="24" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="3">CAPCUT DIGITAL OFFER</text>
+    <text x="40" y="360" fill="rgba(255,255,255,.58)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified marketplace listing with commercial storefront artwork.</text>
   </g>
   <rect width="1260" height="1600" filter="url(#noiseposter9)" opacity=".18"/>
 </svg>

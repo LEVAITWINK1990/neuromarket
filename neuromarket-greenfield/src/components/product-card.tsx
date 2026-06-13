@@ -25,30 +25,31 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="overflow-hidden rounded-[8px] border border-[#2a3441] bg-[#1f262e] transition hover:border-[#475569] hover:bg-[#262e38] hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,.5)]">
       <Link href={`/products/${product.slug}`} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden">
+        <div className="relative aspect-[3/4] overflow-hidden bg-[#0f141b]">
           <img
-            src={product.media.hero}
+            src={product.media.poster}
             alt={product.title}
             className="h-full w-full object-cover transition duration-300 hover:scale-[1.05]"
           />
           <div className="absolute left-2 top-2 z-[2] flex flex-col gap-1">
-            <div className="inline-flex items-center gap-1 rounded-[4px] bg-[rgba(16,19,24,0.75)] px-[6px] py-1 text-[11px] font-bold text-white">
+            <div className="inline-flex items-center gap-1 rounded-[4px] bg-[rgba(16,19,24,0.82)] px-[6px] py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
               <span>{category?.label ?? "AI"}</span>
             </div>
             {product.smart ? (
-              <span className="inline-flex rounded-[4px] bg-[#e23636] px-[6px] py-1 text-[11px] font-bold text-white">
+              <span className="inline-flex rounded-[4px] bg-[#e23636] px-[6px] py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-white">
                 -{discount}%
               </span>
             ) : null}
           </div>
           <span
-            className={`absolute right-2 top-2 z-[2] rounded-[4px] px-[7px] py-[5px] text-[11px] font-bold uppercase leading-3 ${regionTone}`}
+            className={`absolute right-2 top-2 z-[2] rounded-[4px] px-[7px] py-[5px] text-[10px] font-bold uppercase leading-3 ${regionTone}`}
           >
             {product.coverage}
           </span>
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(180deg,rgba(7,10,14,0)_0%,rgba(7,10,14,0.84)_100%)]" />
         </div>
 
-        <div className="flex h-[176px] flex-col justify-between px-4 pb-4 pt-3">
+        <div className="flex min-h-[172px] flex-col justify-between px-4 pb-4 pt-3">
           <div>
             <div className="line-clamp-2 text-[14px] font-semibold leading-5 text-white">
               {product.title}

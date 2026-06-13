@@ -1,5 +1,16 @@
 import type { DemoCategory, DemoProduct, DemoSeller, DemoUser } from "@/lib/types";
 
+export function getProductMedia(slug: string) {
+  const poster = `/product-covers/${slug}-poster.svg`;
+  const hero = `/product-covers/${slug}-hero.svg`;
+
+  return {
+    poster,
+    hero,
+    gallery: [hero, poster, hero],
+  };
+}
+
 export const demoUsers: DemoUser[] = [
   {
     id: "buyer-1",
@@ -165,6 +176,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "One active workspace transfer, resale prohibited, legal business usage only.",
     whatYouReceive: ["Activation key", "Onboarding checklist", "Usage notes"],
     faq,
+    media: getProductMedia("chatgpt-team-workspace-bundle"),
     cover: { from: "#f97316", via: "#fb923c", to: "#facc15", glyph: "GPT", eyebrow: "SMART DEAL" },
   },
   {
@@ -193,6 +205,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Single-user use, commercial writing allowed, no shared credentials.",
     whatYouReceive: ["Voucher code", "Redeem guide", "Priority support"],
     faq,
+    media: getProductMedia("claude-pro-research-pass"),
     cover: { from: "#7c3aed", via: "#a855f7", to: "#f97316", glyph: "CL", eyebrow: "VERIFIED" },
   },
   {
@@ -221,6 +234,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Personal or commercial creation allowed under platform terms.",
     whatYouReceive: ["Account upgrade token", "Prompt starter pack", "Commercial use notes"],
     faq,
+    media: getProductMedia("midjourney-studio-monthly-pass"),
     cover: { from: "#111827", via: "#ec4899", to: "#fb923c", glyph: "MJ", eyebrow: "HOT" },
   },
   {
@@ -248,6 +262,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Single seat, business use allowed, no credential resale.",
     whatYouReceive: ["Activation key", "IDE setup guide", "Priority support"],
     faq,
+    media: getProductMedia("cursor-max-dev-seat"),
     cover: { from: "#0f172a", via: "#38bdf8", to: "#f97316", glyph: "</>", eyebrow: "DEV TOOLS" },
   },
   {
@@ -275,6 +290,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Managed through official workspace billing rules.",
     whatYouReceive: ["Credit voucher", "Redeem notes", "Scope matrix"],
     faq,
+    media: getProductMedia("gemini-workspace-pro-credit-pack"),
     cover: { from: "#22c55e", via: "#14b8a6", to: "#3b82f6", glyph: "G", eyebrow: "TOP SELLER" },
   },
   {
@@ -302,6 +318,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Per-seat licensing only.",
     whatYouReceive: ["Activation key", "Research templates", "Usage guide"],
     faq,
+    media: getProductMedia("perplexity-research-team-license"),
     cover: { from: "#164e63", via: "#06b6d4", to: "#eab308", glyph: "PX", eyebrow: "DAILY DEAL" },
   },
   {
@@ -330,6 +347,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Single-user access only.",
     whatYouReceive: ["License token", "Setup notes", "Buyer protection"],
     faq,
+    media: getProductMedia("copilot-pro-focus-license"),
     cover: {
       from: "#1d4ed8",
       via: "#3b82f6",
@@ -363,6 +381,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Single brand workspace. No account resale.",
     whatYouReceive: ["Activation code", "Brand template bundle", "Usage notes"],
     faq,
+    media: getProductMedia("canva-brand-suite-subscription"),
     cover: { from: "#0f766e", via: "#14b8a6", to: "#38bdf8", glyph: "CA", eyebrow: "CREATOR PICK" },
   },
   {
@@ -390,6 +409,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Single creator usage only.",
     whatYouReceive: ["Voucher code", "Editor quickstart", "Support contact"],
     faq,
+    media: getProductMedia("capcut-pro-editor-pack"),
     cover: { from: "#7f1d1d", via: "#ef4444", to: "#f97316", glyph: "CC", eyebrow: "TRENDING" },
   },
   {
@@ -418,6 +438,7 @@ export const demoProducts: DemoProduct[] = [
     termsOfUse: "Scope limited to one implementation sprint.",
     whatYouReceive: ["Kickoff call", "Workflow blueprint", "Handoff notes"],
     faq,
+    media: getProductMedia("ai-ops-setup-consulting"),
     cover: { from: "#713f12", via: "#f59e0b", to: "#f97316", glyph: "OPS", eyebrow: "SERVICE" },
   },
 ];

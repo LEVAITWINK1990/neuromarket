@@ -2,11 +2,21 @@ import Link from "next/link";
 
 const columns = [
   {
-    title: "Marketplace",
+    title: "Catalog",
     links: [
-      { href: "/marketplace", label: "Каталог" },
-      { href: "/categories", label: "Категории" },
-      { href: "/sellers", label: "Стать продавцом" },
+      { href: "/marketplace", label: "Marketplace" },
+      { href: "/categories", label: "Categories" },
+      { href: "/marketplace?sort=newest", label: "New arrivals" },
+      { href: "/marketplace?smart=1", label: "SMART offers" },
+    ],
+  },
+  {
+    title: "Sell",
+    links: [
+      { href: "/sellers", label: "Become a seller" },
+      { href: "/seller", label: "Seller hub" },
+      { href: "/seller/verification", label: "Verification" },
+      { href: "/seller/payouts", label: "Payouts" },
     ],
   },
   {
@@ -14,14 +24,7 @@ const columns = [
     links: [
       { href: "/trust-and-safety", label: "Trust & Safety" },
       { href: "/dashboard/disputes", label: "Disputes" },
-      { href: "/sign-in", label: "Account access" },
-    ],
-  },
-  {
-    title: "Roles",
-    links: [
-      { href: "/dashboard", label: "Buyer dashboard" },
-      { href: "/seller", label: "Seller hub" },
+      { href: "/sign-in", label: "Sign in" },
       { href: "/admin", label: "Admin panel" },
     ],
   },
@@ -29,69 +32,73 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/5 bg-[#111111]">
-      <div className="mx-auto w-full max-w-[1600px] px-4 py-14 lg:px-5">
-        <div className="mb-10 grid gap-4 rounded-[18px] bg-[#232323] p-6 lg:grid-cols-[1.4fr_0.6fr]">
+    <footer className="border-t border-[#2a3441] bg-[#181d24]">
+      <div className="mx-auto w-full max-w-[1320px] px-5">
+        <div className="grid gap-4 border-b border-[#2a3441] py-10 lg:grid-cols-[1.4fr_0.6fr]">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-[#ff8a3d]">
+            <p className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#94a3b8]">
               NeuroMarket newsletter
             </p>
-            <h2 className="mt-3 text-2xl font-black text-white">
-              Weekly deals on AI subscriptions, credits, files, and services.
+            <h2 className="mt-3 text-[28px] font-bold leading-9 text-white">
+              Weekly drops on AI subscriptions, voucher codes and digital files.
             </h2>
-            <p className="mt-2 max-w-2xl text-sm text-white/65">
-              Follow price drops, new bundles, verified sellers, and limited SMART discounts.
+            <p className="mt-3 max-w-2xl text-[13px] leading-6 text-[#94a3b8]">
+              Track verified sellers, buyer protection updates, and SMART discounts in one weekly
+              digest.
             </p>
           </div>
-          <div className="flex items-center bg-black/20 p-3">
-            <div className="flex w-full items-center overflow-hidden rounded-[4px] bg-white text-black">
+          <div className="flex items-center">
+            <div className="flex w-full items-center overflow-hidden rounded-[8px] bg-white">
               <input
-                className="w-full bg-transparent px-4 py-3 text-sm font-medium outline-none"
+                className="w-full bg-transparent px-4 py-3 text-[14px] font-semibold text-[#101318] outline-none"
                 placeholder="you@company.com"
               />
-              <button className="bg-[#ff6a00] px-5 py-3 text-xs font-black uppercase tracking-[0.12em] text-white">
+              <button className="bg-[#ff7a00] px-5 py-3 text-[12px] font-bold uppercase tracking-[0.06em] text-white">
                 Join
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_repeat(3,0.8fr)]">
+        <div className="grid gap-8 py-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <div>
-                <div className="text-[28px] font-black uppercase leading-none tracking-[-0.05em] text-[#ff6a00]">
-                  Neuro<span className="text-[#ff9a54]">.market</span>
-                </div>
-                <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/45">
-                  Verified digital goods marketplace
-                </div>
-              </div>
+            <div className="inline-flex items-end font-sans italic leading-none text-[#ff7a00]">
+              <span className="text-[30px] font-black tracking-[-0.04em] [transform:skewX(-6deg)]">
+                NEURO
+              </span>
+              <span className="mb-[3px] ml-1 text-[11px] font-black uppercase tracking-[0.08em] text-[#ff9a4d] [transform:skewX(-6deg)]">
+                .market
+              </span>
             </div>
-            <p className="mt-4 max-w-md text-sm text-white/60">
-              Dark commerce storefront for legal AI subscriptions, vouchers, files, credit packs,
-              and expert services.
+            <p className="mt-4 max-w-[34ch] text-[13px] leading-6 text-[#64748b]">
+              The smart marketplace for legal AI subscriptions, licenses, credits, files, and expert
+              delivery.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-white/65">
-              {["Visa", "Mastercard", "YooKassa", "Apple Pay", "Buyer Protection"].map((chip) => (
-                <span key={chip} className="rounded-[999px] border border-white/10 px-3 py-2">
-                  {chip}
-                </span>
-              ))}
+            <div className="mt-5 flex flex-wrap gap-2">
+              {["Visa", "Mastercard", "YooKassa", "Buyer Protection", "24/7 Support"].map(
+                (chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full border border-[#2a3441] px-3 py-2 text-[12px] font-semibold text-[#94a3b8]"
+                  >
+                    {chip}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 
           {columns.map((column) => (
             <div key={column.title}>
-              <h3 className="text-xs font-black uppercase tracking-[0.24em] text-white/45">
+              <h3 className="text-[12px] font-bold uppercase tracking-[0.06em] text-[#94a3b8]">
                 {column.title}
               </h3>
-              <div className="mt-4 space-y-3 text-sm">
+              <div className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="block text-white/75 transition hover:text-white"
+                    className="block text-[13px] text-[#94a3b8] transition hover:text-[#ff7a00]"
                   >
                     {link.label}
                   </Link>
@@ -101,12 +108,11 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 pt-6 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-[#2a3441] py-4 text-[12px] text-[#64748b] sm:flex-row sm:items-center sm:justify-between">
           <span>
-            Buyer protection, instant delivery labels, moderated sellers, and support-first
-            checkout.
+            Buyer protection, verified sellers, instant delivery labels and dispute handling.
           </span>
-          <span>Secure payout handling, disputes, reviews, and seller verification.</span>
+          <span>NeuroMarket storefront prototype for AI digital goods.</span>
         </div>
       </div>
     </footer>

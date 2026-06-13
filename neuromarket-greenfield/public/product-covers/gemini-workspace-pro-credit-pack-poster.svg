@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 1600" role="img" aria-label="GEMINI PRO product cover">
+  
+    <defs>
+      <linearGradient id="bgposter5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accentposter5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00dd80" />
+        <stop offset="55%" stop-color="#00c5d9" />
+        <stop offset="100%" stop-color="#3c82ff" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#00c5d9" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#00dd80" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00dd80" />
+        <stop offset="50%" stop-color="#00c5d9" />
+        <stop offset="100%" stop-color="#3c82ff" />
+      </linearGradient>
+      <pattern id="gridposter5" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noiseposter5" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurposter5">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1260" height="1600" fill="url(#bgposter5)"/>
+  <rect width="1260" height="1600" fill="url(#gridposter5)" opacity=".6"/>
+  <ellipse cx="972" cy="330" rx="320" ry="240" fill="#00dd80" opacity=".16" filter="url(#blurposter5)"/>
+  <ellipse cx="300" cy="1180" rx="360" ry="240" fill="#00c5d9" opacity=".12" filter="url(#blurposter5)"/>
+  <g>
+        <g opacity="0.96">
+          <path d="M640 210l264 188v380L640 968L376 778V398z" fill="url(#glassA)" />
+          <path d="M640 282l196 140v284L640 848L444 706V422z" fill="url(#glassB)" opacity=".82" />
+          <path d="M640 210v758" stroke="#fff" stroke-width="12" opacity=".16" />
+          <path d="M376 398l264 140l264-140" stroke="#fff" stroke-width="12" opacity=".16" />
+          <circle cx="988" cy="438" r="128" fill="url(#orbA)" opacity=".88" />
+        </g></g>
+  <rect x="64" y="64" width="320" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="102" y="99" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">GEMINI</text>
+  <rect x="920" y="64" width="276" height="54" rx="27" fill="#00dd80"/>
+  <text x="1058" y="99" fill="#ffffff" text-anchor="middle" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">TOP SELLER</text>
+  <g transform="translate(78 1188)">
+    <rect width="1104" height="334" rx="44" fill="rgba(9,12,16,.78)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="36" y="36" width="220" height="10" rx="5" fill="url(#accentposter5)"/>
+    <text x="40" y="138" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">GEMINI</text>
+    <text x="40" y="246" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">PRO</text>
+    <text x="40" y="302" fill="rgba(255,255,255,.72)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified AI marketplace offer with instant delivery styling.</text>
+  </g>
+  <rect width="1260" height="1600" filter="url(#noiseposter5)" opacity=".18"/>
+</svg>

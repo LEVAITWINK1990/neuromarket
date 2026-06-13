@@ -5,7 +5,7 @@ import { FormEvent, useState } from "react";
 
 import { Guard } from "@/components/guard";
 import { PageShell } from "@/components/page-shell";
-import { demoCategories } from "@/lib/demo-data";
+import { demoCategories, getProductMedia } from "@/lib/demo-data";
 import { useDemoStore } from "@/lib/demo-store";
 
 export default function SellerNewProductPage() {
@@ -47,6 +47,7 @@ export default function SellerNewProductPage() {
           answer: "После admin review в разделе Admin products.",
         },
       ],
+      media: getProductMedia("custom-manual-offer"),
       cover: { from: "#1f2937", via: "#f97316", to: "#facc15", glyph: "NEW", eyebrow: "PENDING" },
     });
     router.push("/seller/products");

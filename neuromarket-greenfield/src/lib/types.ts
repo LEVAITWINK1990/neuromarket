@@ -67,6 +67,11 @@ export type DemoProduct = {
   termsOfUse: string;
   whatYouReceive: string[];
   faq: { question: string; answer: string }[];
+  media: {
+    poster: string;
+    hero: string;
+    gallery: string[];
+  };
   cover: {
     from: string;
     via: string;

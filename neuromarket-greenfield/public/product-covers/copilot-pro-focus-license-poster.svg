@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 1600" role="img" aria-label="COPILOT PRO product cover">
+  
+    <defs>
+      <linearGradient id="bgposter7" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accentposter7" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#3b82ff" />
+        <stop offset="55%" stop-color="#62b1ff" />
+        <stop offset="100%" stop-color="#4ce1a1" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#62b1ff" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#3b82ff" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#3b82ff" />
+        <stop offset="50%" stop-color="#62b1ff" />
+        <stop offset="100%" stop-color="#4ce1a1" />
+      </linearGradient>
+      <pattern id="gridposter7" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noiseposter7" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurposter7">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1260" height="1600" fill="url(#bgposter7)"/>
+  <rect width="1260" height="1600" fill="url(#gridposter7)" opacity=".6"/>
+  <ellipse cx="972" cy="330" rx="320" ry="240" fill="#3b82ff" opacity=".16" filter="url(#blurposter7)"/>
+  <ellipse cx="300" cy="1180" rx="360" ry="240" fill="#62b1ff" opacity=".12" filter="url(#blurposter7)"/>
+  <g>
+        <g opacity="0.97">
+          <rect x="256" y="300" width="750" height="660" rx="46" fill="url(#glassA)" />
+          <rect x="314" y="370" width="332" height="216" rx="30" fill="#ffffff" opacity=".09" />
+          <rect x="674" y="370" width="272" height="124" rx="26" fill="#ffffff" opacity=".09" />
+          <rect x="674" y="530" width="272" height="248" rx="26" fill="#ffffff" opacity=".07" />
+          <path d="M360 698c68-58 128-84 180-78c53 7 102 39 145 96" stroke="#62b1ff" stroke-width="24" stroke-linecap="round" fill="none" />
+          <path d="M730 600h150" stroke="#4ce1a1" stroke-width="18" stroke-linecap="round" />
+          <path d="M730 652h108" stroke="#fff" stroke-width="18" stroke-linecap="round" opacity=".48" />
+          <circle cx="955" cy="328" r="112" fill="url(#orbA)" opacity=".88" />
+        </g></g>
+  <rect x="64" y="64" width="320" height="54" rx="27" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.14)"/>
+  <text x="102" y="99" fill="#ffffff" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="700" letter-spacing="4">COPILOT</text>
+  <rect x="920" y="64" width="276" height="54" rx="27" fill="#3b82ff"/>
+  <text x="1058" y="99" fill="#ffffff" text-anchor="middle" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="800" letter-spacing="3">FAST DELIVERY</text>
+  <g transform="translate(78 1188)">
+    <rect width="1104" height="334" rx="44" fill="rgba(9,12,16,.78)" stroke="rgba(255,255,255,.12)"/>
+    <rect x="36" y="36" width="220" height="10" rx="5" fill="url(#accentposter7)"/>
+    <text x="40" y="138" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">COPILOT</text>
+    <text x="40" y="246" fill="#ffffff" font-size="106" font-family="Roboto, Arial, sans-serif" font-weight="900" letter-spacing="-2">PRO</text>
+    <text x="40" y="302" fill="rgba(255,255,255,.72)" font-size="28" font-family="Roboto, Arial, sans-serif" font-weight="500">Verified AI marketplace offer with instant delivery styling.</text>
+  </g>
+  <rect width="1260" height="1600" filter="url(#noiseposter7)" opacity=".18"/>
+</svg>

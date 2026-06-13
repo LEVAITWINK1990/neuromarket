@@ -2,28 +2,28 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { FormEvent, useMemo, useState } from "react";
 import {
   ChevronDown,
   Globe,
   Heart,
   LogOut,
+  Scale,
   Search,
   ShoppingCart,
   Sparkles,
-  Scale,
   User2,
 } from "lucide-react";
-import { FormEvent, useState } from "react";
 
 import { useDemoStore } from "@/lib/demo-store";
 
 const primaryLinks = [
-  { href: "/marketplace?category=chatgpt", label: "AI Subscriptions" },
-  { href: "/marketplace?category=perplexity", label: "API Credits" },
-  { href: "/marketplace?category=midjourney", label: "Images" },
-  { href: "/marketplace?category=cursor", label: "Dev Tools" },
-  { href: "/marketplace?category=services", label: "Services" },
-  { href: "/marketplace?sort=newest", label: "New In" },
+  { href: "/marketplace?category=chatgpt", label: "AI Subscriptions", chevron: false },
+  { href: "/marketplace?category=perplexity", label: "API Credits", chevron: false },
+  { href: "/marketplace?category=midjourney", label: "Images", chevron: false },
+  { href: "/marketplace?category=cursor", label: "Dev Tools", chevron: false },
+  { href: "/marketplace?category=services", label: "Services", chevron: false },
+  { href: "/marketplace?sort=newest", label: "New In", chevron: false },
 ];
 
 function dashboardHref(role?: string) {
@@ -32,124 +32,137 @@ function dashboardHref(role?: string) {
   return "/dashboard";
 }
 
+function dashboardLabel(role?: string) {
+  if (role === "ADMIN") return "Admin";
+  if (role === "SELLER") return "Seller";
+  return "Dashboard";
+}
+
 export function SiteHeader() {
-  const { compare, currentUser, signOut, wishlist } = useDemoStore();
+  const { compare, currentUser, orders, signOut, wishlist } = useDemoStore();
   const pathname = usePathname();
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const cartCount = orders.length;
+
+  const activeCatalogHref = useMemo(() => {
+    if (pathname?.startsWith("/marketplace")) return "/marketplace";
+    return "";
+  }, [pathname]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const params = new URLSearchParams();
-    if (query) params.set("q", query);
-    router.push(`/marketplace?${params.toString()}`);
+    if (query.trim()) params.set("q", query.trim());
+    router.push(`/marketplace${params.toString() ? `?${params.toString()}` : ""}`);
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/50 bg-[#161616]">
-      <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-5">
-        <div className="flex items-center gap-4 py-4">
-          <Link href="/" className="flex shrink-0 items-end gap-1 leading-none">
-            <span className="text-[42px] font-black uppercase tracking-[-0.06em] text-[#ff6a00] sm:text-[54px]">
-              Neuro
-            </span>
-            <span className="mb-1 text-[13px] font-black uppercase tracking-[-0.02em] text-[#ff8a3d] sm:mb-1.5 sm:text-[17px]">
-              .market
+    <header className="sticky top-0 z-50 bg-[#181d24]">
+      <div className="mx-auto w-full max-w-[1320px] px-5">
+        <div className="flex h-[78px] items-center gap-5">
+          <Link href="/" className="shrink-0 select-none">
+            <span className="inline-flex items-end font-sans italic leading-none text-[#ff7a00]">
+              <span className="text-[30px] font-black tracking-[-0.04em] [transform:skewX(-6deg)]">
+                NEURO
+              </span>
+              <span className="mb-[3px] ml-1 text-[11px] font-black uppercase tracking-[0.08em] text-[#ff9a4d] [transform:skewX(-6deg)]">
+                .market
+              </span>
             </span>
           </Link>
 
           <form onSubmit={handleSubmit} className="hidden min-w-0 flex-1 md:flex">
-            <div className="flex h-[60px] w-full overflow-hidden rounded-[3px] bg-white">
+            <div className="flex h-12 w-full max-w-[1120px] items-center rounded-[8px] border-2 border-transparent bg-white p-[5px] text-black transition focus-within:border-[#ff7a00]">
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                className="w-full bg-transparent px-5 text-[16px] font-bold text-black outline-none placeholder:text-[#7c7c7c]"
-                placeholder="Search for subscriptions, credits and more..."
+                className="h-[38px] w-full bg-transparent px-4 text-[15px] font-semibold text-[#101318] outline-none placeholder:text-[#94a3b8]"
+                placeholder="Search for subscriptions, credits, licenses and more..."
               />
               <button
                 type="submit"
-                className="flex w-[62px] items-center justify-center bg-[#ff6a00] text-white"
+                className="grid h-[38px] w-12 shrink-0 place-items-center rounded-[6px] bg-[#ff7a00] text-white transition hover:bg-[#e66e00]"
+                aria-label="Search"
               >
-                <Search className="h-6 w-6" />
+                <Search className="h-5 w-5" />
               </button>
             </div>
           </form>
 
-          <div className="ml-auto flex items-center gap-3 text-sm font-bold text-white">
-            <span className="hidden items-center gap-1.5 text-[16px] lg:inline-flex">
-              <Globe className="h-4 w-4 text-[#ff8a3d]" />
+          <div className="ml-auto flex items-center gap-4 text-white">
+            <span className="hidden items-center gap-1.5 text-[15px] font-bold lg:inline-flex">
+              <Globe className="h-4 w-4 text-[#94a3b8]" />
               EN
-              <ChevronDown className="h-4 w-4 text-white/65" />
+              <ChevronDown className="h-3.5 w-3.5 text-[#94a3b8]" />
             </span>
-            <span className="hidden items-center gap-1.5 text-[16px] lg:inline-flex">
-              USD
-              <ChevronDown className="h-4 w-4 text-white/65" />
+            <span className="hidden items-center gap-1.5 text-[15px] font-bold lg:inline-flex">
+              USD $
+              <ChevronDown className="h-3.5 w-3.5 text-[#94a3b8]" />
             </span>
             <Link
               href="/dashboard/wishlist"
-              className="relative hidden h-11 w-11 items-center justify-center text-white transition hover:text-[#ff8a3d] lg:inline-flex"
+              className="relative hidden h-9 w-9 items-center justify-center transition hover:text-[#ff7a00] lg:inline-flex"
             >
               <Heart className="h-5 w-5" />
               {wishlist.length > 0 ? (
-                <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ff6a00] px-1 text-[10px] font-black text-white">
+                <span className="absolute -right-1 -top-1 min-w-[18px] rounded-full bg-[#00dd80] px-1 text-center text-[10px] font-black leading-[18px] text-[#101318]">
                   {wishlist.length}
                 </span>
               ) : null}
             </Link>
             <Link
               href="/compare"
-              className="relative hidden h-11 w-11 items-center justify-center text-white transition hover:text-[#ff8a3d] lg:inline-flex"
+              className="relative hidden h-9 w-9 items-center justify-center transition hover:text-[#ff7a00] lg:inline-flex"
             >
               <Scale className="h-5 w-5" />
               {compare.length > 0 ? (
-                <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#ff6a00] px-1 text-[10px] font-black text-white">
+                <span className="absolute -right-1 -top-1 min-w-[18px] rounded-full bg-[#00dd80] px-1 text-center text-[10px] font-black leading-[18px] text-[#101318]">
                   {compare.length}
                 </span>
               ) : null}
             </Link>
-
             {currentUser ? (
-              <>
-                <Link
-                  href={dashboardHref(currentUser.role)}
-                  className="hidden items-center gap-2 text-[16px] text-white lg:inline-flex"
-                >
-                  Hello,&nbsp;
-                  <span className="text-[#ff8a3d]">
-                    {currentUser.role === "ADMIN"
-                      ? "Admin"
-                      : currentUser.role === "SELLER"
-                        ? "Seller"
-                        : "Dashboard"}
+              <div className="hidden items-center gap-3 lg:flex">
+                <Link href={dashboardHref(currentUser.role)} className="text-[15px] text-white">
+                  Hello,{" "}
+                  <span className="font-bold text-[#ff7a00]">
+                    {dashboardLabel(currentUser.role)}
                   </span>
                 </Link>
                 <button
                   type="button"
                   onClick={signOut}
-                  className="hidden items-center gap-2 text-white/72 transition hover:text-white lg:inline-flex"
+                  className="inline-flex h-9 w-9 items-center justify-center text-white/70 transition hover:text-[#ff7a00]"
+                  aria-label="Sign out"
                 >
                   <LogOut className="h-4 w-4" />
                 </button>
-              </>
+              </div>
             ) : (
-              <Link href="/sign-in" className="hidden text-[16px] lg:inline-flex">
-                Hello,&nbsp;<span className="text-[#ff8a3d]">Sign in</span>
+              <Link href="/sign-in" className="hidden text-[15px] lg:inline-flex">
+                Hello, <span className="font-bold text-[#ff7a00]">Sign in</span>
               </Link>
             )}
-
-            <span className="hidden h-9 items-center bg-[#ff6a00] px-3 text-[16px] font-black text-white lg:inline-flex">
-              $0.00
+            <span className="hidden rounded-[6px] bg-[#ff7a00] px-3 py-[7px] text-[14px] font-bold text-white lg:inline-flex">
+              USD $0.00
             </span>
             <Link
               href={currentUser ? "/dashboard/orders" : "/sign-in"}
-              className="inline-flex h-11 w-11 items-center justify-center text-white transition hover:text-[#ff8a3d]"
+              className="relative inline-flex h-[34px] w-[34px] items-center justify-center transition hover:text-[#ff7a00]"
+              aria-label="Orders"
             >
               <ShoppingCart className="h-6 w-6" />
+              {cartCount > 0 ? (
+                <span className="absolute -right-2 -top-1 min-w-[18px] rounded-full bg-[#00dd80] px-1 text-center text-[10px] font-black leading-[18px] text-[#101318]">
+                  {cartCount}
+                </span>
+              ) : null}
             </Link>
             {!currentUser ? (
               <Link
                 href="/sign-in"
-                className="inline-flex h-11 w-11 items-center justify-center text-white transition hover:text-[#ff8a3d] lg:hidden"
+                className="inline-flex h-[34px] w-[34px] items-center justify-center transition hover:text-[#ff7a00] lg:hidden"
               >
                 <User2 className="h-5 w-5" />
               </Link>
@@ -157,71 +170,66 @@ export function SiteHeader() {
           </div>
         </div>
 
-        <div className="hidden items-center gap-10 border-t border-white/5 py-4 text-[16px] font-bold text-white md:flex">
-          {[
-            { href: "/marketplace", label: "Catalog", accent: true },
-            ...primaryLinks.map((link) => ({ ...link, accent: false })),
-            { href: "/marketplace?smart=1", label: "SMART", accent: true },
-          ].map((link) => (
+        <div className="hidden h-14 items-center gap-8 border-t border-[#2a3441] md:flex">
+          <nav className="flex min-w-0 flex-1 items-center gap-8 overflow-x-auto whitespace-nowrap text-[15px] font-bold text-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <Link
-              key={link.href}
-              href={link.href}
-              className={`flex items-center gap-2 transition ${
-                link.accent
-                  ? "text-white hover:text-[#ffb26b]"
-                  : pathname === link.href
-                    ? "text-white"
-                    : "text-white hover:text-[#ffb26b]"
+              href="/marketplace"
+              className={`flex items-center gap-1.5 transition hover:text-[#ff7a00] ${
+                activeCatalogHref ? "text-white" : "text-white"
               }`}
             >
-              {link.label === "SMART" ? <Sparkles className="h-4 w-4 text-[#ff8a3d]" /> : null}
-              {link.label}
-              {link.label !== "SMART" && link.label !== "Dev Tools" ? (
-                <ChevronDown className="h-4 w-4 text-white/50" />
-              ) : null}
+              CATALOG
+              <ChevronDown className="h-3.5 w-3.5 text-[#94a3b8]" />
             </Link>
-          ))}
+            {primaryLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-1.5 transition hover:text-[#ff7a00] ${
+                  pathname === link.href ? "text-[#ff7a00]" : "text-white"
+                }`}
+              >
+                {link.label}
+                {link.chevron ? <ChevronDown className="h-3.5 w-3.5 text-[#94a3b8]" /> : null}
+              </Link>
+            ))}
+            <Link
+              href="/marketplace?smart=1"
+              className="flex items-center gap-2 text-white transition hover:text-[#ff7a00]"
+            >
+              <Sparkles className="h-4 w-4 text-[#ff7a00]" />
+              SMART
+            </Link>
+          </nav>
         </div>
 
-        <div className="space-y-3 border-t border-white/5 py-3 md:hidden">
+        <div className="space-y-3 border-t border-[#2a3441] py-3 md:hidden">
           <form
             onSubmit={handleSubmit}
-            className="flex h-12 overflow-hidden rounded-[3px] bg-white text-black"
+            className="flex h-12 overflow-hidden rounded-[8px] bg-white"
           >
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              className="w-full bg-transparent px-4 text-sm font-bold outline-none placeholder:text-[#7c7c7c]"
+              className="w-full bg-transparent px-4 text-sm font-semibold text-[#101318] outline-none placeholder:text-[#94a3b8]"
               placeholder="Search in marketplace"
             />
-            <button
-              type="submit"
-              className="flex w-12 items-center justify-center bg-[#ff6a00] text-white"
-            >
+            <button type="submit" className="grid w-12 place-items-center bg-[#ff7a00] text-white">
               <Search className="h-5 w-5" />
             </button>
           </form>
-
-          <div className="flex gap-5 overflow-x-auto whitespace-nowrap text-sm font-bold text-white">
-            <Link href="/marketplace" className="text-[#ff8a3d]">
+          <div className="flex gap-5 overflow-x-auto whitespace-nowrap text-sm font-bold text-white [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <Link href="/marketplace" className="text-[#ff7a00]">
               Catalog
             </Link>
             {primaryLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-white">
+              <Link key={link.href} href={link.href}>
                 {link.label}
               </Link>
             ))}
+            <Link href="/marketplace?smart=1">SMART</Link>
           </div>
         </div>
-
-        {compare.length > 0 ? (
-          <Link
-            href="/compare"
-            className="mb-3 inline-flex items-center gap-2 rounded-[10px] bg-[#252525] px-4 py-3 text-sm font-bold text-white"
-          >
-            Compare {compare.length} selected products
-          </Link>
-        ) : null}
       </div>
     </header>
   );

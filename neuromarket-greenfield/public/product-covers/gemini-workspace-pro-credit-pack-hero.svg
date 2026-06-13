@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 820" role="img" aria-label="GEMINI PRO hero art">
+  
+    <defs>
+      <linearGradient id="bghero5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0f141b" />
+        <stop offset="56%" stop-color="#141c25" />
+        <stop offset="100%" stop-color="#0d1218" />
+      </linearGradient>
+      <linearGradient id="accenthero5" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00dd80" />
+        <stop offset="55%" stop-color="#00c5d9" />
+        <stop offset="100%" stop-color="#3c82ff" />
+      </linearGradient>
+      <linearGradient id="glassA" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.14)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.04)" />
+      </linearGradient>
+      <linearGradient id="glassB" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,.1)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,.02)" />
+      </linearGradient>
+      <radialGradient id="orbA" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="#00c5d9" stop-opacity=".95" />
+        <stop offset="100%" stop-color="#00dd80" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="panelLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00dd80" />
+        <stop offset="50%" stop-color="#00c5d9" />
+        <stop offset="100%" stop-color="#3c82ff" />
+      </linearGradient>
+      <pattern id="gridhero5" width="84" height="84" patternUnits="userSpaceOnUse">
+        <path d="M84 0H0V84" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      </pattern>
+      <filter id="noisehero5" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 .07 .1"/>
+        </feComponentTransfer>
+      </filter>
+      <filter id="blurhero5">
+        <feGaussianBlur stdDeviation="70"/>
+      </filter>
+    </defs>
+  <rect width="1800" height="820" fill="url(#bghero5)"/>
+  <rect width="1800" height="820" fill="url(#gridhero5)" opacity=".36"/>
+  <rect width="1800" height="820" fill="url(#fade5)"/>
+  <defs>
+    <linearGradient id="fade5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(9,12,16,.92)"/>
+      <stop offset="42%" stop-color="rgba(9,12,16,.68)"/>
+      <stop offset="80%" stop-color="rgba(9,12,16,.12)"/>
+      <stop offset="100%" stop-color="rgba(9,12,16,0)"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="1390" cy="240" rx="350" ry="230" fill="#00dd80" opacity=".18" filter="url(#blurhero5)"/>
+  <ellipse cx="1250" cy="660" rx="360" ry="220" fill="#00c5d9" opacity=".14" filter="url(#blurhero5)"/>
+  <g transform="translate(700 -120) scale(.64)">
+    
+        <g opacity="0.96">
+          <path d="M640 210l264 188v380L640 968L376 778V398z" fill="url(#glassA)" />
+          <path d="M640 282l196 140v284L640 848L444 706V422z" fill="url(#glassB)" opacity=".82" />
+          <path d="M640 210v758" stroke="#fff" stroke-width="12" opacity=".16" />
+          <path d="M376 398l264 140l264-140" stroke="#fff" stroke-width="12" opacity=".16" />
+          <circle cx="988" cy="438" r="128" fill="url(#orbA)" opacity=".88" />
+        </g>
+  </g>
+  <rect x="1210" y="126" width="360" height="500" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.16)"/>
+  <rect x="1240" y="156" width="300" height="14" rx="7" fill="url(#accenthero5)"/>
+  <text x="1240" y="240" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">GEMINI</text>
+  <text x="1240" y="300" fill="#ffffff" font-size="56" font-family="Roboto, Arial, sans-serif" font-weight="900">PRO</text>
+  <text x="1240" y="352" fill="rgba(255,255,255,.72)" font-size="22" font-family="Roboto, Arial, sans-serif" font-weight="600">GEMINI marketplace art</text>
+  <g transform="translate(1240 404)">
+    <rect width="272" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
+    <rect y="84" width="214" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
+    <rect y="168" width="248" height="54" rx="18" fill="rgba(255,255,255,.08)"/>
+  </g>
+  <rect width="1800" height="820" filter="url(#noisehero5)" opacity=".14"/>
+</svg>

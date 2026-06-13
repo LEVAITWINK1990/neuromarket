@@ -19,46 +19,62 @@ export function MarketplaceView({
   q?: string;
   sort?: string;
 }) {
-  const { allProducts, compare, toggleCompare, toggleWishlist, wishlist } = useDemoStore();
-  const query = (q ?? "").toLowerCase();
+  const { allProducts } = useDemoStore();
   const filtered = filterProducts(allProducts, { q, category, delivery, sort });
+  const activeSort = sort ?? "popular";
 
   return (
     <PageShell>
       <div className="space-y-8">
-        <section className="rounded-[30px] border border-white/10 bg-[#11161f] p-6">
-          <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f97316]">
+        <section className="rounded-[12px] border border-[#2a3441] bg-[#1f262e] p-6">
+          <p className="text-[12px] font-bold uppercase tracking-[0.08em] text-[#94a3b8]">
             Marketplace
           </p>
-          <h1 className="mt-3 text-4xl font-black text-white">Каталог цифровых AI-товаров</h1>
-          <p className="mt-3 max-w-3xl text-sm text-white/60">
-            Фильтруй витрину по категориям, цене, delivery type и сценариям: licenses, vouchers,
-            files, services.
+          <h1 className="mt-3 text-[34px] font-bold leading-tight text-white">
+            AI subscriptions, vouchers, credits, files and services
+          </h1>
+          <p className="mt-3 max-w-4xl text-[14px] leading-6 text-[#94a3b8]">
+            Search by product name, filter by delivery type and category, and compare fast-moving
+            marketplace listings in a dense commercial grid.
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {demoCategories.map((item) => (
-              <Link
-                key={item.id}
-                href={`/marketplace?category=${item.id}`}
-                className={`rounded-full border px-4 py-2 text-sm ${
-                  category === item.id
-                    ? "border-[#f97316] text-[#f97316]"
-                    : "border-white/10 text-white/65"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
         </section>
 
-        <section className="grid gap-6 lg:grid-cols-[0.28fr_0.72fr]">
-          <aside className="space-y-4 rounded-[28px] border border-white/10 bg-[#11161f] p-5">
+        <section className="space-y-4 rounded-[12px] border border-[#2a3441] bg-[#1f262e] p-5">
+          <div>
+            <div className="mb-3 text-[12px] font-bold uppercase tracking-[0.08em] text-[#94a3b8]">
+              Categories
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/marketplace"
+                className={`rounded-full border px-4 py-2 text-[13px] font-semibold ${
+                  !category ? "border-[#ff7a00] text-[#ff7a00]" : "border-[#2a3441] text-[#94a3b8]"
+                }`}
+              >
+                All
+              </Link>
+              {demoCategories.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/marketplace?category=${item.id}${sort ? `&sort=${sort}` : ""}`}
+                  className={`rounded-full border px-4 py-2 text-[13px] font-semibold ${
+                    category === item.id
+                      ? "border-[#ff7a00] text-[#ff7a00]"
+                      : "border-[#2a3441] text-[#94a3b8]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
             <div>
-              <div className="text-xs font-black uppercase tracking-[0.24em] text-white/45">
+              <div className="mb-3 text-[12px] font-bold uppercase tracking-[0.08em] text-[#94a3b8]">
                 Sort
               </div>
-              <div className="mt-3 grid gap-2">
+              <div className="flex flex-wrap gap-2">
                 {[
                   ["popular", "Popular"],
                   ["newest", "Newest"],
@@ -68,11 +84,11 @@ export function MarketplaceView({
                 ].map(([value, label]) => (
                   <Link
                     key={value}
-                    href={`/marketplace?sort=${value}${category ? `&category=${category}` : ""}`}
-                    className={`rounded-full px-4 py-2 text-sm ${
-                      (sort ?? "popular") === value
-                        ? "bg-[#f97316] text-black"
-                        : "bg-[#0d131c] text-white/70"
+                    href={`/marketplace?sort=${value}${category ? `&category=${category}` : ""}${delivery ? `&delivery=${delivery}` : ""}`}
+                    className={`rounded-full px-4 py-2 text-[13px] font-semibold ${
+                      activeSort === value
+                        ? "bg-[#ff7a00] text-white"
+                        : "bg-[#262e38] text-[#94a3b8]"
                     }`}
                   >
                     {label}
@@ -80,11 +96,20 @@ export function MarketplaceView({
                 ))}
               </div>
             </div>
+
             <div>
-              <div className="text-xs font-black uppercase tracking-[0.24em] text-white/45">
+              <div className="mb-3 text-[12px] font-bold uppercase tracking-[0.08em] text-[#94a3b8]">
                 Delivery
               </div>
-              <div className="mt-3 grid gap-2">
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/marketplace${category ? `?category=${category}` : ""}`}
+                  className={`rounded-full px-4 py-2 text-[13px] font-semibold ${
+                    !delivery ? "bg-[#ff7a00] text-white" : "bg-[#262e38] text-[#94a3b8]"
+                  }`}
+                >
+                  All
+                </Link>
                 {[
                   ["INSTANT", "Instant"],
                   ["MANUAL", "Manual"],
@@ -92,9 +117,9 @@ export function MarketplaceView({
                 ].map(([value, label]) => (
                   <Link
                     key={value}
-                    href={`/marketplace?delivery=${value}${category ? `&category=${category}` : ""}`}
-                    className={`rounded-full px-4 py-2 text-sm ${
-                      delivery === value ? "bg-[#f97316] text-black" : "bg-[#0d131c] text-white/70"
+                    href={`/marketplace?delivery=${value}${category ? `&category=${category}` : ""}${sort ? `&sort=${sort}` : ""}`}
+                    className={`rounded-full px-4 py-2 text-[13px] font-semibold ${
+                      delivery === value ? "bg-[#ff7a00] text-white" : "bg-[#262e38] text-[#94a3b8]"
                     }`}
                   >
                     {label}
@@ -102,43 +127,40 @@ export function MarketplaceView({
                 ))}
               </div>
             </div>
-          </aside>
-
-          <div className="space-y-4">
-            <div className="flex items-center justify-between rounded-[28px] border border-white/10 bg-[#11161f] px-5 py-4">
-              <span className="text-sm text-white/60">{filtered.length} товаров найдено</span>
-              <div className="flex gap-2 text-xs text-white/45">
-                {query ? (
-                  <span className="rounded-full bg-white/5 px-3 py-2">q: {query}</span>
-                ) : null}
-                {category ? (
-                  <span className="rounded-full bg-white/5 px-3 py-2">category: {category}</span>
-                ) : null}
-                {delivery ? (
-                  <span className="rounded-full bg-white/5 px-3 py-2">delivery: {delivery}</span>
-                ) : null}
-              </div>
-            </div>
-
-            {filtered.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    wished={wishlist.includes(product.id)}
-                    compared={compare.includes(product.id)}
-                    onWishlist={() => toggleWishlist(product.id)}
-                    onCompare={() => toggleCompare(product.id)}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="rounded-[28px] border border-dashed border-white/10 bg-[#11161f] p-10 text-center text-white/55">
-                По текущим фильтрам товаров нет. Сбрось часть условий и попробуй снова.
-              </div>
-            )}
           </div>
+        </section>
+
+        <section className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-[12px] border border-[#2a3441] bg-[#1f262e] px-5 py-4">
+            <span className="text-[13px] text-[#94a3b8]">{filtered.length} products found</span>
+            <div className="flex flex-wrap gap-2 text-[12px]">
+              {q ? (
+                <span className="rounded-full bg-[#262e38] px-3 py-2 text-[#94a3b8]">q: {q}</span>
+              ) : null}
+              {category ? (
+                <span className="rounded-full bg-[#262e38] px-3 py-2 text-[#94a3b8]">
+                  category: {category}
+                </span>
+              ) : null}
+              {delivery ? (
+                <span className="rounded-full bg-[#262e38] px-3 py-2 text-[#94a3b8]">
+                  delivery: {delivery}
+                </span>
+              ) : null}
+            </div>
+          </div>
+
+          {filtered.length > 0 ? (
+            <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
+              {filtered.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-[12px] border border-dashed border-[#2a3441] bg-[#1f262e] p-10 text-center text-[14px] text-[#94a3b8]">
+              No products matched these filters. Reset part of the query and try again.
+            </div>
+          )}
         </section>
       </div>
     </PageShell>

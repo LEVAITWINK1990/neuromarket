@@ -1,108 +1,128 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { formatMoney } from "@/lib/format";
 import type { DemoProduct } from "@/lib/types";
 
-export function HeroBanner({
-  featured,
-  thumbnails,
-}: {
-  featured: DemoProduct;
-  thumbnails: DemoProduct[];
-}) {
-  return (
-    <section className="space-y-4">
-      <div className="relative overflow-hidden rounded-[18px] bg-[#232323]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(118deg, rgba(15,15,15,0.96) 0%, rgba(15,15,15,0.82) 44%, rgba(15,15,15,0.16) 100%), linear-gradient(130deg, ${featured.cover.from}, ${featured.cover.via}, ${featured.cover.to})`,
-          }}
-        />
-        <div className="absolute inset-y-0 right-0 hidden w-[48%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_58%)] lg:block" />
-        <div className="relative grid min-h-[250px] items-stretch gap-8 px-6 py-7 sm:min-h-[320px] lg:grid-cols-[0.7fr_0.3fr] lg:px-10 lg:py-9 xl:aspect-[1400/470] xl:min-h-0">
-          <div className="flex flex-col justify-center">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-[#ff8a3d]">
-              {featured.cover.eyebrow}
-            </p>
-            <h1 className="mt-3 max-w-[18ch] text-[34px] font-black leading-[0.98] text-white lg:text-[54px]">
-              {featured.title}
-            </h1>
-            <p className="mt-4 max-w-[56ch] text-sm font-medium leading-6 text-white/82 lg:text-[15px]">
-              {featured.description}
-            </p>
-            <div className="mt-7 flex flex-wrap items-end gap-6">
-              <div>
-                <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/56">
-                  from
-                </div>
-                <div className="mt-1 text-[38px] font-black leading-none text-white">
-                  {formatMoney(featured.price)}
-                </div>
-              </div>
-              <Link
-                href={`/products/${featured.slug}`}
-                className="inline-flex h-12 items-center gap-2 rounded-[10px] bg-[#ff6a00] px-6 text-[13px] font-black uppercase tracking-[0.08em] text-white"
-              >
-                Buy now
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
+export function HeroBanner({ slides }: { slides: DemoProduct[] }) {
+  const [index, setIndex] = useState(0);
+  const activeSlide = slides[index] ?? slides[0];
 
-          <div className="hidden items-end justify-end lg:flex">
-            <div className="flex h-full w-full max-w-[320px] items-end justify-end">
-              <div className="relative flex aspect-[313/378] w-[82%] flex-col justify-between overflow-hidden rounded-[18px] bg-[#161616]/60 p-5 backdrop-blur">
-                <span className="inline-flex w-fit rounded-[10px] bg-[#ff6a00] px-3 py-1 text-[11px] font-black uppercase tracking-[0.08em] text-white">
-                  Smart
-                </span>
-                <div className="text-right">
-                  <div className="text-[120px] font-black leading-none text-white/88">
-                    {featured.cover.glyph}
+  useEffect(() => {
+    if (slides.length <= 1) return;
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length);
+    }, 5500);
+
+    return () => window.clearInterval(timer);
+  }, [slides.length]);
+
+  useEffect(() => {
+    if (index > slides.length - 1) {
+      setIndex(0);
+    }
+  }, [index, slides.length]);
+
+  const thumbSlides = useMemo(() => slides.slice(0, 6), [slides]);
+
+  return (
+    <section className="mb-12">
+      <div className="relative mb-3">
+        <div className="absolute right-[-6px] top-[6px] z-10 grid h-10 w-10 place-items-center rounded-[8px] bg-[#00dd80] text-[21px] font-black text-[#101318] shadow-[0_4px_12px_rgba(0,0,0,0.45)]">
+          S
+        </div>
+
+        <div className="relative overflow-hidden rounded-[12px]">
+          <div className="relative aspect-[16/5.4] min-h-[280px] bg-[#1f262e]">
+            {slides.map((slide, slideIndex) => (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-500 ${
+                  slideIndex === index ? "opacity-100" : "pointer-events-none opacity-0"
+                }`}
+              >
+                <img
+                  src={slide.media.hero}
+                  alt={slide.title}
+                  className="h-full w-full object-cover"
+                  draggable={false}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,19,24,0.82)_0%,rgba(16,19,24,0.35)_38%,rgba(16,19,24,0)_68%)]" />
+                <div className="absolute bottom-10 left-10 z-[2]">
+                  <div className="mb-2 inline-flex rounded-[4px] bg-black/35 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
+                    {slide.cover.eyebrow}
                   </div>
-                  <div className="ml-auto mt-3 max-w-[13rem] space-y-2 text-left text-sm font-bold text-white/82">
-                    {featured.whatYouReceive.slice(0, 3).map((item) => (
-                      <div key={item} className="rounded-[12px] bg-white/8 px-4 py-3">
-                        {item}
-                      </div>
-                    ))}
+                  <h1 className="max-w-[14ch] text-[32px] font-bold leading-10 text-white">
+                    {slide.title}
+                  </h1>
+                  <div className="mt-1 text-[19px] font-bold text-white">
+                    from <span>{formatMoney(slide.price)}</span>
                   </div>
                 </div>
+                <Link
+                  href={`/products/${slide.slug}`}
+                  className="absolute bottom-10 right-10 z-[3] inline-flex h-[46px] items-center rounded-[8px] bg-[#ff7a00] px-[30px] text-[14px] font-bold uppercase tracking-[0.02em] text-white transition hover:bg-[#e66e00]"
+                >
+                  Buy now
+                </Link>
               </div>
-            </div>
+            ))}
+
+            {slides.length > 1 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setIndex((current) => (current - 1 + slides.length) % slides.length)
+                  }
+                  className="absolute left-[18px] top-1/2 z-[4] grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[rgba(245,245,245,0.88)] text-[#101318] transition hover:scale-105 hover:bg-white"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIndex((current) => (current + 1) % slides.length)}
+                  className="absolute right-[18px] top-1/2 z-[4] grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[rgba(245,245,245,0.88)] text-[#101318] transition hover:scale-105 hover:bg-white"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </>
+            ) : null}
           </div>
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-7">
-        {thumbnails.map((item) => (
-          <Link
-            key={item.id}
-            href={`/products/${item.slug}`}
-            className="overflow-hidden rounded-[14px] bg-[#232323] transition hover:bg-[#2a2a2a]"
+      <div className="grid gap-[14px] md:grid-cols-3 xl:grid-cols-6">
+        {thumbSlides.map((slide, slideIndex) => (
+          <button
+            key={slide.id}
+            type="button"
+            onClick={() => setIndex(slideIndex)}
+            className={`relative overflow-hidden rounded-[12px] border-2 bg-[#1f262e] transition ${
+              slideIndex === index ? "border-white" : "border-transparent"
+            }`}
           >
+            <div className="aspect-[16/10]">
+              <img
+                src={slide.media.hero}
+                alt={slide.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
             <div
-              className="aspect-[10/7] p-4"
-              style={{
-                backgroundImage: `linear-gradient(135deg, ${item.cover.from}, ${item.cover.via}, ${item.cover.to})`,
-              }}
-            >
-              <div className="flex h-full items-end justify-between">
-                <div className="text-5xl font-black text-white/92">{item.cover.glyph}</div>
-                <span className="rounded-full bg-black/30 px-2 py-1 text-[10px] font-black uppercase tracking-[0.08em] text-white">
-                  {item.cover.eyebrow}
-                </span>
-              </div>
-            </div>
-            <div className="p-3">
-              <div className="line-clamp-2 text-[13px] font-bold leading-5 text-white">
-                {item.title}
-              </div>
-            </div>
-          </Link>
+              className={`absolute inset-0 transition ${
+                slideIndex === index ? "bg-transparent" : "bg-[rgba(16,19,24,0.35)]"
+              }`}
+            />
+          </button>
         ))}
       </div>
+      {activeSlide ? <span className="sr-only">{activeSlide.title}</span> : null}
     </section>
   );
 }
